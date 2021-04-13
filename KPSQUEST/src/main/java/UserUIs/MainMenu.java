@@ -3,23 +3,22 @@ package UserUIs;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class MainMenu {
-    private OverworldUI u = new OverworldUI();
-
-    public Scene testScene() {
+    
+    public static void setMainMenuScene(Stage s) {
         BorderPane pane = new BorderPane();
         Button b = new Button("Heipä hei");
         pane.setCenter(b);
-        
         pane.setMinSize(200, 200);
         
-        
-        Scene scene = new Scene(pane);
-        b.setOnAction(k ->{
-           
+        Scene mainmenu = new Scene(pane);
+        b.setOnAction(p ->{
+            OverworldUI.setOverWorldScene(s);
         });
-        return scene;
+        
+        s.setScene(mainmenu);
     }
     
 }
