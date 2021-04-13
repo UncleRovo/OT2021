@@ -27,7 +27,7 @@ public class MainMenu {
         Button clearFiles = new Button("Delete all save data");
         clearFiles.setOnAction(k ->{
             try{
-                PrintWriter writer = new PrintWriter(new File("GameData/SaveFiles/saves"));
+                PrintWriter writer = new PrintWriter(new File("saves"));
                 for (int i = 1; i < 4; i++) {
                     writer.print("save_" + i + "_0");
                     if (i < 3) {
@@ -64,7 +64,7 @@ public class MainMenu {
     
     public void initFiles() {
         try {
-            Scanner t = new Scanner(new File("GameData/SaveFiles/saves"));
+            Scanner t = new Scanner(new File("saves"));
             while (t.hasNextLine()) {
                 String s = t.nextLine();
                 String[] savedata = s.split("_");
@@ -102,8 +102,8 @@ public class MainMenu {
                 this.setMainMenuScene(s);
                 
                 try {
-                    List<String> info = Files.readAllLines(Paths.get("GameData/SaveFiles/saves"));
-                    PrintWriter writer = new PrintWriter(new File("GameData/SaveFiles/saves"));
+                    List<String> info = Files.readAllLines(Paths.get("saves"));
+                    PrintWriter writer = new PrintWriter(new File("saves"));
                     
                     for (int c = 0; c < 3; c++) {
                         if (info.get(c).contains("save_" + k)) {
