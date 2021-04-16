@@ -1,18 +1,62 @@
 package UserUIs;
 
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class OverworldUI {
     
     public static void setOverWorldScene(Stage s, String name) {
-        BorderPane pane2 = new BorderPane();
+        Pane pane2 = new Pane();
         pane2.setMinSize(500, 300);
-        pane2.setCenter(new Label("Tervetuloa peliin " + name +"!"));
+        pane2.setMaxSize(700, 400);
+        
+        Image bg = new Image("file:tausta_test.jpg");
+        ImageView background = new ImageView(bg);
+        //background.setScaleX(0.5);
+        //background.setScaleX(0.5);
+        background.setTranslateX(-900);
+        
+        Image tr = new Image("file:kuusi.png");
+        ImageView tree = new ImageView(tr);
+        tree.setScaleX(0.5);
+        tree.setScaleY(0.5);
+        
+        pane2.getChildren().add(background);
+        pane2.getChildren().add(tree);
+        pane2.getChildren().get(1).toFront();
+        
+        
         
         Scene ovscene = new Scene(pane2);
+        
+        ovscene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.LEFT) {
+                        tree.setTranslateX(tree.getTranslateX() - 5);
+                    }
+                
+                if (event.getCode() == KeyCode.RIGHT) {
+                    tree.setTranslateX(tree.getTranslateX() + 5);
+                }
+                
+                if (event.getCode() == KeyCode.DOWN) {
+                        tree.setTranslateY(tree.getTranslateY() + 5);
+                    }
+                
+                if (event.getCode() == KeyCode.UP) {
+                    tree.setTranslateY(tree.getTranslateY() - 5);
+                }
+            }
+        });
         s.setScene(ovscene);
     }
 }

@@ -19,6 +19,8 @@ public class KPSQuest extends Application {
     @Override
     public void start(Stage arg0) throws Exception {
         m.setMainMenuScene(arg0);
+        arg0.setMaxHeight(400);
+        arg0.setMaxWidth(700);
         arg0.show();
     }
 }
