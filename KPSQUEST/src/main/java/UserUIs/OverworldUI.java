@@ -28,7 +28,7 @@ public class OverworldUI {
         //background.setScaleX(0.5);
         background.setTranslateX(-900);
         
-        Image pl = new Image("file:protagonist.jpg");
+        Image pl = new Image("file:protagonist.png");
         ImageView player = new ImageView(getImageWithoutBlue(pl));
         
         Image h_b = new Image("file:talo_ala.jpg");
