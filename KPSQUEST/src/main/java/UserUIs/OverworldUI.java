@@ -5,10 +5,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class OverworldUI {
@@ -25,7 +29,7 @@ public class OverworldUI {
         background.setTranslateX(-900);
         
         Image tr = new Image("file:kuusi.png");
-        ImageView tree = new ImageView(tr);
+        ImageView tree = new ImageView(getImageWithoutWhite(tr));
         tree.setScaleX(0.5);
         tree.setScaleY(0.5);
         
@@ -57,6 +61,34 @@ public class OverworldUI {
                 }
             }
         });
+        //ovscene.setFill(Color.TRANSPARENT);
         s.setScene(ovscene);
+    }
+    
+    public static WritableImage getImageWithoutWhite(Image image) {
+        WritableImage wi = new WritableImage((int)image.getWidth(), (int)image.getHeight());
+        PixelReader reader = image.getPixelReader();
+        PixelWriter writer = wi.getPixelWriter();
+        
+        System.out.println("TESTATAAN VÄRIN KOODIA: " + reader.getColor(0, 0) + " JA SITTEN HEX KOODIA: " + Color.BLUE);
+        
+        for (int y = 0; y < image.getHeight(); y++) {
+            for (int x = 0; x < image.getWidth(); x++) {
+                if (reader.getColor(x, y) == Color.WHITE) {
+                    Color vari = reader.getColor(x, y);
+                    double punainen = vari.getRed();
+                    double vihrea = vari.getGreen();
+                    double sininen = vari.getBlue();
+                    double lapinakyvyys = vari.getOpacity();
+
+                    Color uusiVari = new Color(punainen, vihrea, sininen, lapinakyvyys);
+
+                    writer.setColor(x, y, uusiVari);
+                } else {
+                    writer.setColor(x, y, Color.BLUE);
+                }
+            }
+        }
+        return wi;
     }
 }
