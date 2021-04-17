@@ -29,7 +29,7 @@ public class OverworldUI {
         background.setTranslateX(-900);
         
         Image tr = new Image("file:kuusi_bluscreen.png");
-        ImageView tree = new ImageView(getImageWithoutWhite(tr));
+        ImageView tree = new ImageView(getImageWithoutBlue(tr));
         tree.setScaleX(0.5);
         tree.setScaleY(0.5);
         
@@ -61,16 +61,13 @@ public class OverworldUI {
                 }
             }
         });
-        //ovscene.setFill(Color.TRANSPARENT);
         s.setScene(ovscene);
     }
     
-    public static WritableImage getImageWithoutWhite(Image image) {
+    public static WritableImage getImageWithoutBlue(Image image) {
         WritableImage wi = new WritableImage((int)image.getWidth(), (int)image.getHeight());
         PixelReader reader = image.getPixelReader();
         PixelWriter writer = wi.getPixelWriter();
-        
-        System.out.println("TESTATAAN VÄRIN KOODIA: " + reader.getColor(0, 0) + " JA SITTEN HEX KOODIA: " + Color.BLUE);
         
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x = 0; x < image.getWidth(); x++) {
