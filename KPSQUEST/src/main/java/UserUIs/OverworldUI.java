@@ -28,7 +28,7 @@ public class OverworldUI {
         //background.setScaleX(0.5);
         background.setTranslateX(-900);
         
-        Image tr = new Image("file:kuusi.png");
+        Image tr = new Image("file:kuusi_bluscreen.png");
         ImageView tree = new ImageView(getImageWithoutWhite(tr));
         tree.setScaleX(0.5);
         tree.setScaleY(0.5);
@@ -74,18 +74,8 @@ public class OverworldUI {
         
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x = 0; x < image.getWidth(); x++) {
-                if (reader.getColor(x, y) == Color.WHITE) {
-                    Color vari = reader.getColor(x, y);
-                    double punainen = vari.getRed();
-                    double vihrea = vari.getGreen();
-                    double sininen = vari.getBlue();
-                    double lapinakyvyys = vari.getOpacity();
-
-                    Color uusiVari = new Color(punainen, vihrea, sininen, lapinakyvyys);
-
-                    writer.setColor(x, y, uusiVari);
-                } else {
-                    writer.setColor(x, y, Color.BLUE);
+                if (!(reader.getColor(x, y).toString().equals(Color.BLUE.toString()))) {
+                    writer.setColor(x, y, reader.getColor(x, y));
                 }
             }
         }
