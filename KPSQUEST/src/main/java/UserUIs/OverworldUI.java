@@ -30,7 +30,7 @@ public class OverworldUI {
         //background.setScaleX(0.5);
         background.setTranslateX(-900);
         
-        Image pl = new Image("file:protagonist.png");
+        /*Image pl = new Image("file:protagonist.png");
         ImageView player = new ImageView(getImageWithoutBlue(pl));
         
         Image h_b = new Image("file:talo_ala.png");
@@ -50,17 +50,17 @@ public class OverworldUI {
         
         shrinkByAmount(player, 0.5);
         shrinkByAmount(house1_bottom, 0.5);
-        shrinkByAmount(house1_top, 0.5);
+        shrinkByAmount(house1_top, 0.5);*/
         
         pane2.getChildren().add(background);
-        
+        /*
         pane2.getChildren().add(house1_bottom);
         pane2.getChildren().add(player);
         pane2.getChildren().add(house1_top);
-        pane2.getChildren().add(hitbox);
+        pane2.getChildren().add(hitbox);*/
         
         Scene ovscene = new Scene(pane2);
-        
+        /*
         ovscene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             KeyCode latest = null;
             @Override
@@ -103,7 +103,7 @@ public class OverworldUI {
                     }
                 }
             }
-        });
+        });*/
         s.setScene(ovscene);
     }
     
