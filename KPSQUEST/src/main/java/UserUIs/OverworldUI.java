@@ -107,9 +107,9 @@ public class OverworldUI {
         s.setScene(ovscene);
         //s.setMaximized(true);
         s.setHeight(background.getImage().getHeight());
-        s.setWidth(background.getImage().getWidth() * 0.70);
+        s.setWidth(background.getImage().getWidth() * 0.7);
         s.setMaxHeight(background.getImage().getHeight());
-        s.setMaxWidth(background.getImage().getWidth());
+        s.setMaxWidth(background.getImage().getWidth() * 0.7);
     }
     
     public static boolean collision(ImageView player, Polygon hitbox) {
