@@ -13,6 +13,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
 public class OverworldUI {
@@ -41,6 +43,11 @@ public class OverworldUI {
         house1_top.setTranslateX(house1_bottom.getTranslateX() - 9);
         house1_top.setTranslateY(house1_bottom.getTranslateY() - 122);
         
+        Polygon hitbox = new Polygon(0, 0, 255, 0, 255, 15, 0, 15);
+        hitbox.setVisible(false);
+        hitbox.setTranslateX(house1_bottom.getTranslateX() + 140);
+        hitbox.setTranslateY(house1_bottom.getTranslateY() + 34);
+        
         shrinkByAmount(player, 0.5);
         shrinkByAmount(house1_bottom, 0.5);
         shrinkByAmount(house1_top, 0.5);
@@ -50,34 +57,59 @@ public class OverworldUI {
         pane2.getChildren().add(house1_bottom);
         pane2.getChildren().add(player);
         pane2.getChildren().add(house1_top);
-        //pane2.getChildren().get(1).toFront();
-        //pane2.getChildren().get(3).toFront();
-        
-        
+        pane2.getChildren().add(hitbox);
         
         Scene ovscene = new Scene(pane2);
         
         ovscene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            KeyCode latest = null;
             @Override
             public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.LEFT) {
+                if (!(player.getBoundsInParent().intersects(hitbox.getBoundsInParent()))) {
+                    if (event.getCode() == KeyCode.LEFT) {
                         player.setTranslateX(player.getTranslateX() - 5);
+                        latest = KeyCode.LEFT;
                     }
                 
-                if (event.getCode() == KeyCode.RIGHT) {
-                    player.setTranslateX(player.getTranslateX() + 5);
-                }
+                    if (event.getCode() == KeyCode.RIGHT) {
+                        player.setTranslateX(player.getTranslateX() + 5);
+                        latest = KeyCode.RIGHT;
+                    }
                 
-                if (event.getCode() == KeyCode.DOWN) {
+                    if (event.getCode() == KeyCode.DOWN) {
                         player.setTranslateY(player.getTranslateY() + 5);
+                        latest = KeyCode.DOWN;
                     }
                 
-                if (event.getCode() == KeyCode.UP) {
-                    player.setTranslateY(player.getTranslateY() - 5);
+                    if (event.getCode() == KeyCode.UP) {
+                        player.setTranslateY(player.getTranslateY() - 5);
+                        latest = KeyCode.UP;
+                    }
+                } else {
+                    if (latest == KeyCode.LEFT) {
+                        player.setTranslateX(player.getTranslateX() + 1);
+                    }
+                
+                    if (latest == KeyCode.RIGHT) {
+                        player.setTranslateX(player.getTranslateX() - 1);
+                    }
+                
+                    if (latest == KeyCode.DOWN) {
+                        player.setTranslateY(player.getTranslateY() - 1);
+                    }
+                
+                    if (latest == KeyCode.UP) {
+                        player.setTranslateY(player.getTranslateY() + 1);
+                    }
                 }
             }
         });
         s.setScene(ovscene);
+    }
+    
+    public static boolean collision(ImageView player, Polygon hitbox) {
+        
+        return !(player.getTranslateX() == hitbox.getTranslateX());
     }
     
     public static WritableImage getImageWithoutBlue(Image image) {
