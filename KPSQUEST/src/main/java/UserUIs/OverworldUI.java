@@ -31,16 +31,27 @@ public class OverworldUI {
         Image pl = new Image("file:protagonist.png");
         ImageView player = new ImageView(getImageWithoutBlue(pl));
         
-        Image h_b = new Image("file:talo_ala.jpg");
+        Image h_b = new Image("file:talo_ala.png");
         ImageView house1_bottom = new ImageView(getImageWithoutBlue(h_b));
+        house1_bottom.setTranslateY(700);
+        house1_bottom.setTranslateX(250);
+        
+        Image h_t = new Image("file:talo_yla.png");
+        ImageView house1_top = new ImageView(getImageWithoutBlue(h_t));
+        house1_top.setTranslateX(house1_bottom.getTranslateX() - 9);
+        house1_top.setTranslateY(house1_bottom.getTranslateY() - 122);
         
         shrinkByAmount(player, 0.5);
         shrinkByAmount(house1_bottom, 0.5);
+        shrinkByAmount(house1_top, 0.5);
         
         pane2.getChildren().add(background);
-        pane2.getChildren().add(player);
+        
         pane2.getChildren().add(house1_bottom);
-        pane2.getChildren().get(1).toFront();
+        pane2.getChildren().add(player);
+        pane2.getChildren().add(house1_top);
+        //pane2.getChildren().get(1).toFront();
+        //pane2.getChildren().get(3).toFront();
         
         
         
