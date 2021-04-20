@@ -107,7 +107,7 @@ public class OverworldUI {
         s.setScene(ovscene);
         //s.setMaximized(true);
         s.setHeight(background.getImage().getHeight());
-        s.setWidth(background.getImage().getWidth());
+        s.setWidth(background.getImage().getWidth() * 0.70);
         s.setMaxHeight(background.getImage().getHeight());
         s.setMaxWidth(background.getImage().getWidth());
     }
