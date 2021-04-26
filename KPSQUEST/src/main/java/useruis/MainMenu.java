@@ -1,4 +1,4 @@
-package user_uis;
+package useruis;
 
 import utils.Savefile;
 import java.io.File;

@@ -1,4 +1,4 @@
-package user_uis;
+package useruis;
 
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -33,30 +33,30 @@ public class OverworldUI {
         Image pl = new Image(utils.Utils.getFilePath("file:protagonist.png"));
         ImageView player = new ImageView(getImageWithoutBlue(pl));
         
-        Image h_b = new Image(utils.Utils.getFilePath("file:talo_ala.png"));
-        ImageView house1_bottom = new ImageView(getImageWithoutBlue(h_b));
-        house1_bottom.setTranslateY(700);
-        house1_bottom.setTranslateX(250);
+        Image hb = new Image(utils.Utils.getFilePath("file:talo_ala.png"));
+        ImageView house1Bottom = new ImageView(getImageWithoutBlue(hb));
+        house1Bottom.setTranslateY(700);
+        house1Bottom.setTranslateX(250);
         
-        Image h_t = new Image(utils.Utils.getFilePath("file:talo_yla.png"));
-        ImageView house1_top = new ImageView(getImageWithoutBlue(h_t));
-        house1_top.setTranslateX(house1_bottom.getTranslateX() - 9);
-        house1_top.setTranslateY(house1_bottom.getTranslateY() - 122);
+        Image ht = new Image(utils.Utils.getFilePath("file:talo_yla.png"));
+        ImageView house1Top = new ImageView(getImageWithoutBlue(ht));
+        house1Top.setTranslateX(house1Bottom.getTranslateX() - 9);
+        house1Top.setTranslateY(house1Bottom.getTranslateY() - 122);
         
         Polygon hitbox = new Polygon(0, 0, 255, 0, 255, 20, 0, 20);
         hitbox.setVisible(false);
-        hitbox.setTranslateX(house1_bottom.getTranslateX() + 140);
-        hitbox.setTranslateY(house1_bottom.getTranslateY() + 34);
+        hitbox.setTranslateX(house1Bottom.getTranslateX() + 140);
+        hitbox.setTranslateY(house1Bottom.getTranslateY() + 34);
         
         shrinkByAmount(player, 0.5);
-        shrinkByAmount(house1_bottom, 0.5);
-        shrinkByAmount(house1_top, 0.5);
+        shrinkByAmount(house1Bottom, 0.5);
+        shrinkByAmount(house1Top, 0.5);
         
         pane2.getChildren().add(background);
         
-        pane2.getChildren().add(house1_bottom);
+        pane2.getChildren().add(house1Bottom);
         pane2.getChildren().add(player);
-        pane2.getChildren().add(house1_top);
+        pane2.getChildren().add(house1Top);
         pane2.getChildren().add(hitbox);
         
         Scene ovscene = new Scene(pane2);
@@ -137,5 +137,5 @@ public class OverworldUI {
     private static void shrinkByAmount(ImageView image, double d) {
         image.setScaleX(d);
         image.setScaleY(d);
-   }
+    }
 }
