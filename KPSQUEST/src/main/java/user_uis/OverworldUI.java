@@ -1,4 +1,4 @@
-package UserUIs;
+package user_uis;
 
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -24,21 +24,21 @@ public class OverworldUI {
         pane2.setMinSize(500, 300);
         pane2.setMaxSize(700, 400);
         
-        Image bg = new Image(Utils.Utils.getFilePath("file:tausta_test.jpg"));
+        Image bg = new Image(utils.Utils.getFilePath("file:tausta_test.jpg"));
         ImageView background = new ImageView(bg);
         //background.setScaleX(0.5);
         //background.setScaleX(0.5);
         background.setTranslateX(-900);
         
-        Image pl = new Image(Utils.Utils.getFilePath("file:protagonist.png"));
+        Image pl = new Image(utils.Utils.getFilePath("file:protagonist.png"));
         ImageView player = new ImageView(getImageWithoutBlue(pl));
         
-        Image h_b = new Image(Utils.Utils.getFilePath("file:talo_ala.png"));
+        Image h_b = new Image(utils.Utils.getFilePath("file:talo_ala.png"));
         ImageView house1_bottom = new ImageView(getImageWithoutBlue(h_b));
         house1_bottom.setTranslateY(700);
         house1_bottom.setTranslateX(250);
         
-        Image h_t = new Image(Utils.Utils.getFilePath("file:talo_yla.png"));
+        Image h_t = new Image(utils.Utils.getFilePath("file:talo_yla.png"));
         ImageView house1_top = new ImageView(getImageWithoutBlue(h_t));
         house1_top.setTranslateX(house1_bottom.getTranslateX() - 9);
         house1_top.setTranslateY(house1_bottom.getTranslateY() - 122);

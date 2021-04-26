@@ -1,6 +1,6 @@
 package kpsquest;
 
-import UserUIs.MainMenu;
+import user_uis.MainMenu;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;

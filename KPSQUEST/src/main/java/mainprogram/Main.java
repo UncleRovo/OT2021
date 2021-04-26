@@ -1,4 +1,4 @@
-package MainProgram;
+package mainprogram;
 
 import kpsquest.KPSQuest;
 

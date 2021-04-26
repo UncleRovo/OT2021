@@ -1,6 +1,6 @@
-package UserUIs;
+package user_uis;
 
-import Utils.Savefile;
+import utils.Savefile;
 import java.io.File;
 import java.io.PrintWriter;
 import java.nio.file.Files;
