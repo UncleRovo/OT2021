@@ -8,7 +8,7 @@ Pelissä liikutaan nuolinäppäimillä.
 
 #### Tapa 1:
 
-Lataa kansio KPSQUEST koneellesi, navigoi terminaalissa kyseisen kansion sisälle ja suorita komento: mvn compile exec:java -Dexec.mainClass=MainProgram.Main
+Lataa kansio KPSQUEST koneellesi, navigoi terminaalissa kyseisen kansion sisälle ja suorita komento: mvn compile exec:java -Dexec.mainClass=mainprogram.Main
 
 ##### Tapa 2:
 
