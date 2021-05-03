@@ -14,9 +14,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import utils.Savefiles;
 
 public class MainMenu {
     private Savefile[] files = new Savefile[] {new Savefile("New File 1", false), new Savefile("New File 2", false), new Savefile("New File 3", false)};
+    public Savefiles ss;
     
     public void setMainMenuScene(Stage s) {
         BorderPane pane = new BorderPane();
@@ -42,7 +44,7 @@ public class MainMenu {
             }
         });
         
-        for (Savefile file: files) {
+        for (Savefile file: ss.files) {
             Button b = new Button(file.name);
             
             b.setOnAction(p ->{
@@ -62,7 +64,8 @@ public class MainMenu {
         s.setScene(mainmenu);
     }
     
-    public void initFiles() {
+    //KOKEILLAAN SIIRTÄÄ
+    /*public void initFiles() {
         try {
             Scanner t = new Scanner(new File("saves"));
             while (t.hasNextLine()) {
@@ -77,7 +80,7 @@ public class MainMenu {
         } catch (Exception e) {
             
         }
-    }
+    }*/
 
     private void createNewSave(Stage s, Savefile file) {
         BorderPane pane = new BorderPane();
