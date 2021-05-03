@@ -29,6 +29,24 @@ public class GraphicsBuilder {
         }
         return wi;
     }
+    
+    public static ImageView getGraphicsObject(String filename, double translateX, double translateY, double sizemod, boolean bluscreen) {
+        Image image = new Image(utils.Utils.getFilePath(filename));
+        ImageView graphics;
+        
+        if (bluscreen) {
+             graphics = new ImageView(getImageWithoutBlue(image));
+        } else {
+            graphics = new ImageView(image);
+        }
+        
+        graphics.setTranslateX(translateX);
+        graphics.setTranslateY(translateY);
+        
+        shrinkByAmount(graphics, sizemod);
+        
+        return graphics;
+    }
 }
 
 

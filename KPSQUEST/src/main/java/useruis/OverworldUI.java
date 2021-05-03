@@ -24,17 +24,13 @@ public class OverworldUI {
         
         Image bg = new Image(utils.Utils.getFilePath("file:tausta_test.jpg"));
         ImageView background = new ImageView(bg);
-        //background.setScaleX(0.5);
-        //background.setScaleX(0.5);
         background.setTranslateX(-900);
         
         Image pl = new Image(utils.Utils.getFilePath("file:protagonist.png"));
         ImageView player = new ImageView(GraphicsBuilder.getImageWithoutBlue(pl));
         
-        Image hb = new Image(utils.Utils.getFilePath("file:talo_ala.png"));
-        ImageView house1Bottom = new ImageView(GraphicsBuilder.getImageWithoutBlue(hb));
-        house1Bottom.setTranslateY(700);
-        house1Bottom.setTranslateX(250);
+        ImageView house1Bottom = GraphicsBuilder.getGraphicsObject("file:talo_ala.png", 250, 700, 0.5, true);
+        
         
         Image ht = new Image(utils.Utils.getFilePath("file:talo_yla.png"));
         ImageView house1Top = new ImageView(GraphicsBuilder.getImageWithoutBlue(ht));
@@ -47,7 +43,7 @@ public class OverworldUI {
         hitbox.setTranslateY(house1Bottom.getTranslateY() + 34);
         
         GraphicsBuilder.shrinkByAmount(player, 0.5);
-        GraphicsBuilder.shrinkByAmount(house1Bottom, 0.5);
+        //GraphicsBuilder.shrinkByAmount(house1Bottom, 0.5);
         GraphicsBuilder.shrinkByAmount(house1Top, 0.5);
         
         pane2.getChildren().add(background);
