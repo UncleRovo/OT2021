@@ -28,20 +28,8 @@ public class MainMenu {
         
         Button clearFiles = new Button("Delete all save data");
         clearFiles.setOnAction(k ->{
-            try{
-                PrintWriter writer = new PrintWriter(new File("saves"));
-                for (int i = 1; i < 4; i++) {
-                    writer.print("save_" + i + "_0");
-                    if (i < 3) {
-                        writer.print("\n");
-                    }
-                }
-                writer.close();
-                files = new Savefile[] {new Savefile("New File 1", false), new Savefile("New File 2", false), new Savefile("New File 3", false)};
-                setMainMenuScene(s);
-            } catch (Exception e) {
-                
-            }
+            ss.deleteData();
+            setMainMenuScene(s);
         });
         
         for (Savefile file: ss.files) {

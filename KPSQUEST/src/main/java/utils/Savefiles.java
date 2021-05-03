@@ -1,6 +1,7 @@
 package utils;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Savefiles {
@@ -24,5 +25,22 @@ public class Savefiles {
         } catch (Exception e) {
             System.out.println("VIRHE");
         }
+    }
+    
+    public void deleteData() {
+        try{
+                PrintWriter writer = new PrintWriter(new File("saves"));
+                for (int i = 1; i < 4; i++) {
+                    writer.print("save_" + i + "_0");
+                    if (i < 3) {
+                        writer.print("\n");
+                    }
+                }
+                writer.close();
+                files = new Savefile[] {new Savefile("New File 1", false), new Savefile("New File 2", false), new Savefile("New File 3", false)};
+                
+            } catch (Exception e) {
+                
+            }
     }
 }
