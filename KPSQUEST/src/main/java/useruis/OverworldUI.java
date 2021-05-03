@@ -2,7 +2,6 @@ package useruis;
 
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
@@ -10,12 +9,11 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
+import utils.GraphicsBuilder;
 
 public class OverworldUI {
     
@@ -48,9 +46,9 @@ public class OverworldUI {
         hitbox.setTranslateX(house1Bottom.getTranslateX() + 140);
         hitbox.setTranslateY(house1Bottom.getTranslateY() + 34);
         
-        shrinkByAmount(player, 0.5);
-        shrinkByAmount(house1Bottom, 0.5);
-        shrinkByAmount(house1Top, 0.5);
+        GraphicsBuilder.shrinkByAmount(player, 0.5);
+        GraphicsBuilder.shrinkByAmount(house1Bottom, 0.5);
+        GraphicsBuilder.shrinkByAmount(house1Top, 0.5);
         
         pane2.getChildren().add(background);
         
@@ -132,10 +130,5 @@ public class OverworldUI {
             }
         }
         return wi;
-    }
-
-    private static void shrinkByAmount(ImageView image, double d) {
-        image.setScaleX(d);
-        image.setScaleY(d);
     }
 }
