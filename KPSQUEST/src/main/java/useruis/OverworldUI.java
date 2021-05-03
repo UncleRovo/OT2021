@@ -29,15 +29,15 @@ public class OverworldUI {
         background.setTranslateX(-900);
         
         Image pl = new Image(utils.Utils.getFilePath("file:protagonist.png"));
-        ImageView player = new ImageView(getImageWithoutBlue(pl));
+        ImageView player = new ImageView(GraphicsBuilder.getImageWithoutBlue(pl));
         
         Image hb = new Image(utils.Utils.getFilePath("file:talo_ala.png"));
-        ImageView house1Bottom = new ImageView(getImageWithoutBlue(hb));
+        ImageView house1Bottom = new ImageView(GraphicsBuilder.getImageWithoutBlue(hb));
         house1Bottom.setTranslateY(700);
         house1Bottom.setTranslateX(250);
         
         Image ht = new Image(utils.Utils.getFilePath("file:talo_yla.png"));
-        ImageView house1Top = new ImageView(getImageWithoutBlue(ht));
+        ImageView house1Top = new ImageView(GraphicsBuilder.getImageWithoutBlue(ht));
         house1Top.setTranslateX(house1Bottom.getTranslateX() - 9);
         house1Top.setTranslateY(house1Bottom.getTranslateY() - 122);
         
@@ -110,25 +110,7 @@ public class OverworldUI {
         s.setMaxWidth(background.getImage().getWidth() * 0.7);
     }
     
-    public static boolean collision(ImageView player, Polygon hitbox) {
-        
-        return !(player.getTranslateX() == hitbox.getTranslateX());
-    }
-    
-    public static WritableImage getImageWithoutBlue(Image image) {
-        WritableImage wi = new WritableImage((int)image.getWidth(), (int)image.getHeight());
-        PixelReader reader = image.getPixelReader();
-        PixelWriter writer = wi.getPixelWriter();
-        
-        //System.out.println(Color.BLUE.toString() + "   " + reader.getColor(0, 0).toString());
-        
-        for (int y = 0; y < image.getHeight(); y++) {
-            for (int x = 0; x < image.getWidth(); x++) {
-                if (!(reader.getColor(x, y).toString().equals(Color.BLUE.toString()))) {
-                    writer.setColor(x, y, reader.getColor(x, y));
-                }
-            }
-        }
-        return wi;
+    public static boolean collision(ImageView object, Polygon hitbox) {
+        return !(object.getTranslateX() == hitbox.getTranslateX());
     }
 }
