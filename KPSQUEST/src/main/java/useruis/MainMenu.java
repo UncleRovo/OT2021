@@ -1,12 +1,6 @@
 package useruis;
 
 import utils.Savefile;
-import java.io.File;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.Scanner;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,7 +11,6 @@ import javafx.stage.Stage;
 import utils.Savefiles;
 
 public class MainMenu {
-    private Savefile[] files = new Savefile[] {new Savefile("New File 1", false), new Savefile("New File 2", false), new Savefile("New File 3", false)};
     public Savefiles ss;
     
     public void setMainMenuScene(Stage s) {
@@ -51,24 +44,6 @@ public class MainMenu {
         Scene mainmenu = new Scene(pane);
         s.setScene(mainmenu);
     }
-    
-    //KOKEILLAAN SIIRTÄÄ
-    /*public void initFiles() {
-        try {
-            Scanner t = new Scanner(new File("saves"));
-            while (t.hasNextLine()) {
-                String s = t.nextLine();
-                String[] savedata = s.split("_");
-                if (savedata[2].equals("0")) {
-                    files[Integer.valueOf(savedata[1]) - 1] = new Savefile("New Save " + savedata[1], false);
-                } else {
-                    files[Integer.valueOf(savedata[1]) - 1] = new Savefile(savedata[2], true);
-                }
-            }
-        } catch (Exception e) {
-            
-        }
-    }*/
 
     private void createNewSave(Stage s, Savefile file) {
         BorderPane pane = new BorderPane();
@@ -91,26 +66,7 @@ public class MainMenu {
                 file.name = field.getText();
                 file.started = true;
                 this.setMainMenuScene(s);
-                
-                try {
-                    List<String> info = Files.readAllLines(Paths.get("saves"));
-                    PrintWriter writer = new PrintWriter(new File("saves"));
-                    
-                    for (int c = 0; c < 3; c++) {
-                        if (info.get(c).contains("save_" + k)) {
-                            writer.print("save_" + k + "_" + file.name);
-                        } else {
-                            writer.print(info.get(c));
-                        }
-                        if (c < 2) {
-                            writer.print("\n");
-                        }
-                    }
-                    writer.close();
-                    
-                } catch(Exception e) {
-                    
-                }
+                ss.createNew(file, k);
             }
         });
         

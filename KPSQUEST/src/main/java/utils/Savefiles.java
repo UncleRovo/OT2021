@@ -2,6 +2,9 @@ package utils;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
 
 public class Savefiles {
@@ -42,5 +45,28 @@ public class Savefiles {
             } catch (Exception e) {
                 
             }
+    }
+    
+    public void createNew(Savefile file, int k) {
+        
+                try {
+                    List<String> info = Files.readAllLines(Paths.get("saves"));
+                    PrintWriter writer = new PrintWriter(new File("saves"));
+                    
+                    for (int c = 0; c < 3; c++) {
+                        if (info.get(c).contains("save_" + k)) {
+                            writer.print("save_" + k + "_" + file.name);
+                        } else {
+                            writer.print(info.get(c));
+                        }
+                        if (c < 2) {
+                            writer.print("\n");
+                        }
+                    }
+                    writer.close();
+                    
+                } catch(Exception e) {
+                    
+                }
     }
 }
