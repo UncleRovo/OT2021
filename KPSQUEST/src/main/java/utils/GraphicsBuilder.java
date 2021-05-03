@@ -6,6 +6,7 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 
 public class GraphicsBuilder {
     public static void shrinkByAmount(ImageView image, double d) {
@@ -46,6 +47,15 @@ public class GraphicsBuilder {
         shrinkByAmount(graphics, sizemod);
         
         return graphics;
+    }
+
+    public static Polygon getHitbox(double d, double d0, double d1, double d2, double d3, double d4, double d5, double d6, boolean visible, double x, double y) {
+        Polygon hitbox = new Polygon(d, d0, d1, d2, d3, d4, d5, d6);
+        hitbox.setVisible(visible);
+        hitbox.setTranslateX(x);
+        hitbox.setTranslateY(y);
+        
+        return hitbox;
     }
 }
 
