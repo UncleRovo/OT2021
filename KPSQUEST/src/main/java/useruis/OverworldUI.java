@@ -23,11 +23,7 @@ public class OverworldUI {
         ImageView house1Top = GraphicsBuilder.getGraphicsObject("file:talo_yla.png", 241, 578, 0.5, true);
         Polygon houseHitbox = GraphicsBuilder.getHitbox(0.0, 0.0, 255.0, 0.0, 255.0, 20.0, 0.0, 20.0, false, 390, 734);
         
-        pane2.getChildren().add(background);
-        pane2.getChildren().add(house1Bottom);
-        pane2.getChildren().add(player);
-        pane2.getChildren().add(house1Top);
-        pane2.getChildren().add(houseHitbox);
+        pane2.getChildren().addAll(background, house1Bottom, player, house1Top, houseHitbox);
         
         Scene ovscene = new Scene(pane2);
         
