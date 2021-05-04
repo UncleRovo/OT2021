@@ -2,7 +2,7 @@
 
 [Vaatimusmäärittely](https://github.com/UncleRovo/OT2021/blob/main/KPSQUEST/dokumentaatio/vaatimusmaarittely.md)
 
-[Arkkitehtuuri](https://github.com/UncleRovo/OT2021/blob/main/KPSQUEST/dokumentaatio/arkkitehtuuri.md)
+[Arkkitehtuuri](https://github.com/UncleRovo/OT2021/blob/main/dokumentaatio/arkkitehtuuri.md)
 
 [Työaikakirjanpito](https://github.com/UncleRovo/OT2021/blob/main/dokumentaatio/tuntikirjanpito.md)
 
