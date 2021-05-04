@@ -1,4 +1,7 @@
 package data;
+
+import java.io.InputStream;
+
 public class Utils {
     public static String getFilePath(String path) {
         
@@ -16,5 +19,10 @@ public class Utils {
             path = cl.getResource(name[1]).toString();
         }
         return path;
-    } 
+    }
+    
+    public static String getSavePath(String path) {
+        
+        return path;
+    }
 }

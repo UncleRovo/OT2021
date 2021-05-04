@@ -13,10 +13,6 @@ import data.Savefiles;
 public class MainMenu {
     public Savefiles savefilemanager = new Savefiles();
     
-    public MainMenu() {
-        savefilemanager.initFiles();
-    }
-    
     public void setMainMenuScene(Stage s) {
         BorderPane pane = new BorderPane();
         VBox buttons = new VBox();

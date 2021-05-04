@@ -1,6 +1,7 @@
 package data;
 
 import java.io.File;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,7 +16,8 @@ public class Savefiles {
     
     public void initFiles() {
         try {
-            Scanner t = new Scanner(new File("saves"));
+            File save = new File(data.Utils.getSavePath("saves"));
+            Scanner t = new Scanner(save);
             while (t.hasNextLine()) {
                 String s = t.nextLine();
                 String[] savedata = s.split("_");
@@ -26,7 +28,21 @@ public class Savefiles {
                 }
             }
         } catch (Exception e) {
-            System.out.println("VIRHE");
+            try {
+            InputStream is = this.getClass().getClassLoader().getResourceAsStream("saves");
+            Scanner t = new Scanner(is);
+            while (t.hasNextLine()) {
+                String s = t.nextLine();
+                String[] savedata = s.split("_");
+                if (savedata[2].equals("0")) {
+                    files[Integer.valueOf(savedata[1]) - 1] = new Savefile("New Save " + savedata[1], false);
+                } else {
+                    files[Integer.valueOf(savedata[1]) - 1] = new Savefile(savedata[2], true);
+                }
+            }  
+        } catch (Exception ee) {
+                System.out.println(ee);
+        }
         }
     }
     
@@ -43,7 +59,21 @@ public class Savefiles {
                 files = new Savefile[] {new Savefile("New File 1", false), new Savefile("New File 2", false), new Savefile("New File 3", false)};
                 
             } catch (Exception e) {
+                try{
+                InputStream is = this.getClass().getClassLoader().getResourceAsStream("saves");
+                PrintWriter writer = new PrintWriter(is.toString());
+                for (int i = 1; i < 4; i++) {
+                    writer.print("save_" + i + "_0");
+                    if (i < 3) {
+                        writer.print("\n");
+                    }
+                }
+                writer.close();
+                files = new Savefile[] {new Savefile("New File 1", false), new Savefile("New File 2", false), new Savefile("New File 3", false)};
                 
+            } catch (Exception ee) {
+                    System.out.println(ee);
+            }
             }
     }
     
