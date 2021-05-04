@@ -6,7 +6,7 @@
 
 [Työaikakirjanpito](https://github.com/UncleRovo/OT2021/blob/main/dokumentaatio/tuntikirjanpito.md)
 
-Pelissä liikutaan nuolinäppäimillä.
+Pelissä liikutaan nuolinäppäimillä. Pelimaailman hahmoille puhuminen tapahtuu painamalla x-näppäintä.
 
 ### Ohjelman testaaminen:
 
