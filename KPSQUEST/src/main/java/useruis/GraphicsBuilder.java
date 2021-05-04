@@ -49,7 +49,7 @@ public class GraphicsBuilder {
         return graphics;
     }
 
-    public static Polygon getHitbox(double d, double d0, double d1, double d2, double d3, double d4, double d5, double d6, boolean visible, double x, double y) {
+    public static Polygon getPolygon(double d, double d0, double d1, double d2, double d3, double d4, double d5, double d6, boolean visible, double x, double y) {
         Polygon hitbox = new Polygon(d, d0, d1, d2, d3, d4, d5, d6);
         hitbox.setVisible(visible);
         hitbox.setTranslateX(x);

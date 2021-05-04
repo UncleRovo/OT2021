@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 
@@ -14,6 +15,7 @@ public class OverworldUI {
     
     public static void setOverWorldScene(Stage s, String name) {
         HashSet<Polygon> hitboxes = new HashSet<>();
+        
         Pane pane2 = new Pane();
         pane2.setMinSize(500, 300);
         pane2.setMaxSize(700, 400);
@@ -24,22 +26,29 @@ public class OverworldUI {
         ImageView house1Top = GraphicsBuilder.getGraphicsObject("file:talo_yla.png", 241, 578, 0.5, true);
         ImageView rival = GraphicsBuilder.getGraphicsObject("file:rival.png", 1250, 0, 0.5, true);
         
-        Polygon houseHitbox = GraphicsBuilder.getHitbox(0, 0, 255, 0, 255, 20, 0, 20, false, 390, 734);
-        Polygon rivalHitbox = GraphicsBuilder.getHitbox(0, 0, 40, 0, 40, 140, 0, 140, false, 1320, 70);
+        Polygon houseHitbox = GraphicsBuilder.getPolygon(0, 0, 255, 0, 255, 20, 0, 20, false, 390, 734);
+        Polygon rivalHitbox = GraphicsBuilder.getPolygon(0, 0, 40, 0, 40, 140, 0, 140, false, 1320, 70);
+        Polygon rivalTalkbox = GraphicsBuilder.getPolygon(0, 0, 150, 0, 150, 60, 0, 60, true, 1260, 130);
+        
+        
         
         hitboxes.add(houseHitbox);
         hitboxes.add(rivalHitbox);
         
-        pane2.getChildren().addAll(background, house1Bottom, rival, player, house1Top);
-        pane2.getChildren().addAll(houseHitbox, rivalHitbox);
+        pane2.getChildren().addAll(background, house1Bottom, rival, player, house1Top/*, dialogueBox*/);
+        pane2.getChildren().addAll(houseHitbox, rivalHitbox, rivalTalkbox);
+        
+        DialogueHandler convo = new DialogueHandler();
+        pane2.getChildren().addAll(convo.dialogueBox, convo.text);
         
         Scene ovscene = new Scene(pane2);
         
         ovscene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            DialogueHandler diaHandler = convo;
             KeyCode latest = null;
             @Override
             public void handle(KeyEvent event) {
-                if (!(collision(hitboxes, player))) {
+                if (!(collision(hitboxes, player)) && diaHandler.isDialogue == false) {
                     if (event.getCode() == KeyCode.LEFT) {
                         player.setTranslateX(player.getTranslateX() - 10);
                         latest = KeyCode.LEFT;
@@ -59,7 +68,7 @@ public class OverworldUI {
                         player.setTranslateY(player.getTranslateY() - 10);
                         latest = KeyCode.UP;
                     }
-                } else {
+                } else if (diaHandler.isDialogue == false){
                     if (latest == KeyCode.LEFT) {
                         player.setTranslateX(player.getTranslateX() + 1);
                     }
@@ -75,6 +84,10 @@ public class OverworldUI {
                     if (latest == KeyCode.UP) {
                         player.setTranslateY(player.getTranslateY() + 1);
                     }
+                }
+                
+                if (event.getCode() == KeyCode.X && player.getBoundsInParent().intersects(rivalTalkbox.getBoundsInParent())) {
+                    diaHandler.talk();
                 }
             }
         });
