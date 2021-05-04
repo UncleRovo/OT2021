@@ -1,5 +1,6 @@
 package useruis;
 
+import java.util.HashSet;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 public class OverworldUI {
     
     public static void setOverWorldScene(Stage s, String name) {
+        HashSet<Polygon> hitboxes = new HashSet<>();
         Pane pane2 = new Pane();
         pane2.setMinSize(500, 300);
         pane2.setMaxSize(700, 400);
@@ -20,10 +22,16 @@ public class OverworldUI {
         ImageView player = GraphicsBuilder.getGraphicsObject("file:protagonist.png", 0, 0, 0.5, true);
         ImageView house1Bottom = GraphicsBuilder.getGraphicsObject("file:talo_ala.png", 250, 700, 0.5, true);
         ImageView house1Top = GraphicsBuilder.getGraphicsObject("file:talo_yla.png", 241, 578, 0.5, true);
-        Polygon houseHitbox = GraphicsBuilder.getHitbox(0.0, 0.0, 255.0, 0.0, 255.0, 20.0, 0.0, 20.0, false, 390, 734);
         ImageView rival = GraphicsBuilder.getGraphicsObject("file:rival.png", 1250, 0, 0.5, true);
         
-        pane2.getChildren().addAll(background, house1Bottom, player, house1Top, houseHitbox, rival);
+        Polygon houseHitbox = GraphicsBuilder.getHitbox(0, 0, 255, 0, 255, 20, 0, 20, false, 390, 734);
+        Polygon rivalHitbox = GraphicsBuilder.getHitbox(0, 0, 40, 0, 40, 140, 0, 140, false, 1320, 70);
+        
+        hitboxes.add(houseHitbox);
+        hitboxes.add(rivalHitbox);
+        
+        pane2.getChildren().addAll(background, house1Bottom, rival, player, house1Top);
+        pane2.getChildren().addAll(houseHitbox, rivalHitbox);
         
         Scene ovscene = new Scene(pane2);
         
@@ -31,7 +39,7 @@ public class OverworldUI {
             KeyCode latest = null;
             @Override
             public void handle(KeyEvent event) {
-                if (!(player.getBoundsInParent().intersects(houseHitbox.getBoundsInParent()))) {
+                if (!(collision(hitboxes, player))) {
                     if (event.getCode() == KeyCode.LEFT) {
                         player.setTranslateX(player.getTranslateX() - 10);
                         latest = KeyCode.LEFT;
@@ -78,7 +86,7 @@ public class OverworldUI {
         s.setMaxWidth(background.getImage().getWidth() * 0.7);
     }
     
-    public static boolean collision(ImageView object, Polygon hitbox) {
-        return !(object.getTranslateX() == hitbox.getTranslateX());
+    public static boolean collision(HashSet<Polygon> hitboxes, ImageView object) {
+        return hitboxes.stream().anyMatch((hitbox) -> (object.getBoundsInParent().intersects(hitbox.getBoundsInParent())));
     }
 }
