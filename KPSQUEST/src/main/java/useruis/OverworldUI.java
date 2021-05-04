@@ -111,9 +111,9 @@ public class OverworldUI {
     }
 
     private static void buildHitboxes(List<Node> elements, HashSet<Polygon> hitboxes) {
-        Polygon houseHitbox = GraphicsBuilder.getPolygon(0, 0, 255, 0, 255, 20, 0, 20, false, 390, 734);
-        Polygon rivalHitbox = GraphicsBuilder.getPolygon(0, 0, 40, 0, 40, 140, 0, 140, false, 1320, 70);
-        Polygon rivalTalkbox = GraphicsBuilder.getPolygon(0, 0, 150, 0, 150, 60, 0, 60, false, 1260, 130);
+        Polygon houseHitbox = GraphicsBuilder.getPolygon(255, 255, 20, 20, false, 390, 734);
+        Polygon rivalHitbox = GraphicsBuilder.getPolygon(40, 40, 140, 140, false, 1320, 70);
+        Polygon rivalTalkbox = GraphicsBuilder.getPolygon(150, 150, 60, 60, false, 1260, 130);
         
         elements.add(houseHitbox);
         elements.add(rivalHitbox);

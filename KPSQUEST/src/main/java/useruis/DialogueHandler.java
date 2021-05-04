@@ -17,7 +17,7 @@ public class DialogueHandler {
         options[0] = "Hello. Have you ever wondered why...";
         options[1] = "Actually nevermind.";
         options[2] = "The dev hasn't implemented fighting\n mechanics yet";
-        dialogueBox = GraphicsBuilder.getPolygon(0, 0, 1750, 0, 1750, 400, 0, 400, false, 50, 600);
+        dialogueBox = GraphicsBuilder.getPolygon(1750, 1750, 400, 400, false, 50, 600);
         dialogueBox.setFill(Color.LIGHTGRAY);
         isDialogue = false;
         text.setVisible(false);
