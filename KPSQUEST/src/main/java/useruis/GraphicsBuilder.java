@@ -32,7 +32,7 @@ public class GraphicsBuilder {
     * @return Grafiikka ilman sinistä taustaa.
     */
     public static WritableImage getImageWithoutBlue(Image image) {
-        WritableImage wi = new WritableImage((int)image.getWidth(), (int)image.getHeight());
+        WritableImage wi = new WritableImage((int) image.getWidth(), (int) image.getHeight());
         PixelReader reader = image.getPixelReader();
         PixelWriter writer = wi.getPixelWriter();
         
@@ -62,7 +62,7 @@ public class GraphicsBuilder {
         ImageView graphics;
         
         if (bluscreen) {
-             graphics = new ImageView(getImageWithoutBlue(image));
+            graphics = new ImageView(getImageWithoutBlue(image));
         } else {
             graphics = new ImageView(image);
         }

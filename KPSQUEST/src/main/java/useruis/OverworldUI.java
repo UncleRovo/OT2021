@@ -72,7 +72,7 @@ public class OverworldUI {
                         player.setTranslateY(player.getTranslateY() - 10);
                         latest = KeyCode.UP;
                     }
-                } else if (diaHandler.isDialogue == false){
+                } else if (diaHandler.isDialogue == false) {
                     if (latest == KeyCode.LEFT) {
                         player.setTranslateX(player.getTranslateX() + 1);
                     }
