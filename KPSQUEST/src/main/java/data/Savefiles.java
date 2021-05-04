@@ -1,5 +1,6 @@
 package data;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -59,21 +60,6 @@ public class Savefiles {
                 files = new Savefile[] {new Savefile("New File 1", false), new Savefile("New File 2", false), new Savefile("New File 3", false)};
                 
             } catch (Exception e) {
-                try{
-                InputStream is = this.getClass().getClassLoader().getResourceAsStream("saves");
-                PrintWriter writer = new PrintWriter(is.toString());
-                for (int i = 1; i < 4; i++) {
-                    writer.print("save_" + i + "_0");
-                    if (i < 3) {
-                        writer.print("\n");
-                    }
-                }
-                writer.close();
-                files = new Savefile[] {new Savefile("New File 1", false), new Savefile("New File 2", false), new Savefile("New File 3", false)};
-                
-            } catch (Exception ee) {
-                    System.out.println(ee);
-            }
             }
     }
     
