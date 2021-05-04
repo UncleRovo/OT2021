@@ -1,8 +1,8 @@
 # KPS-Quest
 
-Vaatimusmäärittely: (https://github.com/UncleRovo/OT2021/blob/main/KPSQUEST/dokumentaatio/vaatimusmaarittely.md)
+[Vaatimusmäärittely](https://github.com/UncleRovo/OT2021/blob/main/KPSQUEST/dokumentaatio/vaatimusmaarittely.md)
 
-Työaikakirjanpito: (https://github.com/UncleRovo/OT2021/blob/main/dokumentaatio/tuntikirjanpito.md)
+[Työaikakirjanpito](https://github.com/UncleRovo/OT2021/blob/main/dokumentaatio/tuntikirjanpito.md)
 
 Pelissä liikutaan nuolinäppäimillä.
 
