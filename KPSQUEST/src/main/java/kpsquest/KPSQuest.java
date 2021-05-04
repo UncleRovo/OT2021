@@ -4,16 +4,13 @@ import useruis.MainMenu;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import utils.Savefiles;
 
 public class KPSQuest extends Application {
     MainMenu m = new MainMenu();
     
     @Override
     public void init() {
-        Savefiles sa = new Savefiles();
-        sa.initFiles();
-        m.ss = sa;
+        m.ss.initFiles();
     }
     
     public static void main(String[] args) {

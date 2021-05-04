@@ -1,6 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import utils.Utils;
+import data.Utils;
 
 public class UtilsTest {
     

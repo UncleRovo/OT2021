@@ -1,6 +1,6 @@
 package useruis;
 
-import utils.Savefile;
+import data.Savefile;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,10 +8,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import utils.Savefiles;
+import data.Savefiles;
 
 public class MainMenu {
-    public Savefiles ss;
+    public Savefiles ss = new Savefiles();
+    
+    public MainMenu() {
+        ss.initFiles();
+    }
     
     public void setMainMenuScene(Stage s) {
         BorderPane pane = new BorderPane();

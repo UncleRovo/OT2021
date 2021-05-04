@@ -1,4 +1,4 @@
-package utils;
+package data;
 public class Utils {
     public static String getFilePath(String path) {
         

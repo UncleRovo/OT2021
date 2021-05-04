@@ -1,4 +1,4 @@
-package utils;
+package useruis;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,7 +32,7 @@ public class GraphicsBuilder {
     }
     
     public static ImageView getGraphicsObject(String filename, double translateX, double translateY, double sizemod, boolean bluscreen) {
-        Image image = new Image(utils.Utils.getFilePath(filename));
+        Image image = new Image(data.Utils.getFilePath(filename));
         ImageView graphics;
         
         if (bluscreen) {

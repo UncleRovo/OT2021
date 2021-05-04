@@ -1,4 +1,4 @@
-package utils;
+package data;
 
 public class Savefile {
     public String name;
