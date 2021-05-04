@@ -17,7 +17,6 @@ public class GraphicsBuilder {
     *
     * @param   image Pienennettävä kuva
     * @param   d Kuvan pienennysaste
-    * @return Erikokoinen kuva
     */
     public static void shrinkByAmount(ImageView image, double d) {
         image.setScaleX(d);

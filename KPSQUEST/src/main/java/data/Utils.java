@@ -3,6 +3,14 @@ package data;
 import java.io.InputStream;
 
 public class Utils {
+    
+    /**
+    * Metodin avulla löydetään oikea polku kuvatiedostoihin.
+    * 
+    * @param path Tiedoston nimi muodossa "file:kuva.png"
+    * 
+    * @return Oikea polku tiedostoon
+    */
     public static String getFilePath(String path) {
         
         String[] name = path.split(":");

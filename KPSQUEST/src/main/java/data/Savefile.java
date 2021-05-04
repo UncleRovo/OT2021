@@ -9,6 +9,11 @@ public class Savefile {
         this.started = started;
     }
     
+    /**
+    * Metodi asettaa tallennustiedostolle nimen.
+    * 
+    * @param name Tiedostolle annettava nimi
+    */
     public void changeName(String name) {
         this.name = name;
     }

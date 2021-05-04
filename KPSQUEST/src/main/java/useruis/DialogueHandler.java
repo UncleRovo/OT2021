@@ -6,6 +6,11 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 
 public class DialogueHandler {
+    
+    /**
+    * Väliaikaisratkaisuna hahmojen vuorosanoille toimii taulukko,
+    * jossa on alkioina hahmojen vuorosanoja.
+    */
     String[] options;
     boolean isDialogue;
     Polygon dialogueBox;
@@ -26,6 +31,9 @@ public class DialogueHandler {
         text.setTranslateY(dialogueBox.getTranslateY() + 20);
     }
     
+    /**
+    * Metodi suorittaa puhekuplan ja tekstin piirtämisen ruudulle.
+    */
     public void talk() {
         isDialogue = true;
         text.setVisible(true);

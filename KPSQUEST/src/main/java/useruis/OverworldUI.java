@@ -41,6 +41,10 @@ public class OverworldUI {
         s.setMaxWidth(2400);
     }
     
+    /**
+    * Metodi tarkastelee napinpainalluksia, ja suorittaa tarvittavat toiminnot
+    * oikean napin ollessa painettuna.
+    */
     public static void setKeyDetection(Scene ovscene, List<Node> elements, HashSet<Polygon> hitboxes, DialogueHandler convo) {
         ovscene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             DialogueHandler diaHandler = convo;
