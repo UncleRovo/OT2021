@@ -33,12 +33,10 @@ public class DialogueHandler {
         i++;
         if (i == options.length) {
             endConvo();
+            return;
         }
         
         text.setText(options[i]);
-        
-        
-        
     }
     
     public void endConvo() {
