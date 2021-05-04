@@ -7,7 +7,7 @@ public class UtilsTest {
     @Test
     public void utlisReturnsCorrectPath() {
         String test = Utils.getFilePath("file:monalisa.jpg");
-        assertEquals("file:monalisa.jpg", test);
+        assertEquals("file:GameData/Graphics/monalisa.jpg", test);
     }
     
     @Test(expected = ArrayIndexOutOfBoundsException.class)

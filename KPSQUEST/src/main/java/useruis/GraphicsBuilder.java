@@ -32,7 +32,7 @@ public class GraphicsBuilder {
     }
     
     public static ImageView getGraphicsObject(String filename, double translateX, double translateY, double sizemod, boolean bluscreen) {
-        Image image = new Image("file:"+data.Utils.getFilePath(filename));
+        Image image = new Image(data.Utils.getFilePath(filename));
         ImageView graphics;
         
         if (bluscreen) {
