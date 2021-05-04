@@ -6,11 +6,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class KPSQuest extends Application {
-    MainMenu m = new MainMenu();
+    MainMenu menu = new MainMenu();
     
     @Override
     public void init() {
-        m.ss.initFiles();
+        menu.savefilemanager.initFiles();
     }
     
     public static void main(String[] args) {
@@ -19,7 +19,7 @@ public class KPSQuest extends Application {
 
     @Override
     public void start(Stage arg0) throws Exception {
-        m.setMainMenuScene(arg0);
+        menu.setMainMenuScene(arg0);
         arg0.setMaxHeight(400);
         arg0.setMaxWidth(700);
         //arg0.initStyle(StageStyle.TRANSPARENT);

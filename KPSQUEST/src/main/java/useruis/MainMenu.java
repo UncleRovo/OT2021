@@ -11,10 +11,10 @@ import javafx.stage.Stage;
 import data.Savefiles;
 
 public class MainMenu {
-    public Savefiles ss = new Savefiles();
+    public Savefiles savefilemanager = new Savefiles();
     
     public MainMenu() {
-        ss.initFiles();
+        savefilemanager.initFiles();
     }
     
     public void setMainMenuScene(Stage s) {
@@ -25,14 +25,14 @@ public class MainMenu {
         
         Button clearFiles = new Button("Delete all save data");
         clearFiles.setOnAction(k ->{
-            ss.deleteData();
+            savefilemanager.deleteData();
             setMainMenuScene(s);
         });
         
-        for (Savefile file: ss.files) {
-            Button b = new Button(file.name);
+        for (Savefile file: savefilemanager.files) {
+            Button startButton = new Button(file.name);
             
-            b.setOnAction(p ->{
+            startButton.setOnAction(p ->{
                 if (file.started) {
                     OverworldUI.setOverWorldScene(s, file.name);
                 } else {
@@ -40,7 +40,7 @@ public class MainMenu {
                 }
             });
             
-            buttons.getChildren().add(b);
+            buttons.getChildren().add(startButton);
         }
         pane.setCenter(buttons);
         pane.setBottom(clearFiles);
@@ -63,14 +63,14 @@ public class MainMenu {
             i = 3;
         }
         
-        int k = i;
+        int number = i;
         
         b.setOnAction(p ->{
             if (field.getText().length() > 0) {
                 file.name = field.getText();
                 file.started = true;
                 this.setMainMenuScene(s);
-                ss.createNew(file, k);
+                savefilemanager.createNew(file, number);
             }
         });
         
