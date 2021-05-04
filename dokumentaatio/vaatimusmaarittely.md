@@ -5,6 +5,7 @@ KPS-Quest on interaktiivinen, "top-down" -kuvakulmasta kuvattu roolipeli, jossa 
 - Overworld -näkymä, jossa hahmoa voi liikuttaa
 - Tallennustoiminnallisuus
 - Useampi pelitallennus
+- Pelimaailman hahmoille puhuminen
 ## Suunnitellut toiminnallisuudet
 #### Ensimmäisessä versiossa tulee olemaan:
 - Hahmonluonti
