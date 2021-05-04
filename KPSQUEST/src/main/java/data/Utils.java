@@ -6,6 +6,7 @@ public class Utils {
     public static String getFilePath(String path) {
         
         String[] name = path.split(":");
+        path = "GameData/Graphics/" + name[1];
         
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
         if (cl == null) {
