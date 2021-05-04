@@ -24,26 +24,24 @@ public class OverworldUI {
         pane2.setMaxSize(700, 400);
         
         buildGraphics(elements);
-        
-        
-        
-        Polygon houseHitbox = GraphicsBuilder.getPolygon(0, 0, 255, 0, 255, 20, 0, 20, false, 390, 734);
-        Polygon rivalHitbox = GraphicsBuilder.getPolygon(0, 0, 40, 0, 40, 140, 0, 140, false, 1320, 70);
-        Polygon rivalTalkbox = GraphicsBuilder.getPolygon(0, 0, 150, 0, 150, 60, 0, 60, true, 1260, 130);
-        
-        
-        
-        hitboxes.add(houseHitbox);
-        hitboxes.add(rivalHitbox);
+        buildHitboxes(elements, hitboxes);
         
         pane2.getChildren().addAll(elements);
-        pane2.getChildren().addAll(houseHitbox, rivalHitbox, rivalTalkbox);
         
         DialogueHandler convo = new DialogueHandler();
         pane2.getChildren().addAll(convo.dialogueBox, convo.text);
         
         Scene ovscene = new Scene(pane2);
+        setKeyDetection(ovscene, elements, hitboxes, convo);
         
+        s.setScene(ovscene);
+        s.setHeight(1200);
+        s.setWidth(2000);
+        s.setMaxHeight(1500);
+        s.setMaxWidth(2400);
+    }
+    
+    public static void setKeyDetection(Scene ovscene, List<Node> elements, HashSet<Polygon> hitboxes, DialogueHandler convo) {
         ovscene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             DialogueHandler diaHandler = convo;
             Node player = elements.get(3);
@@ -88,17 +86,11 @@ public class OverworldUI {
                     }
                 }
                 
-                if (event.getCode() == KeyCode.X && player.getBoundsInParent().intersects(rivalTalkbox.getBoundsInParent())) {
+                if (event.getCode() == KeyCode.X && player.getBoundsInParent().intersects(elements.get(7).getBoundsInParent())) {
                     diaHandler.talk();
                 }
             }
         });
-        s.setScene(ovscene);
-        s.setMaximized(false);
-        s.setHeight(1200);
-        s.setWidth(2000);
-        s.setMaxHeight(1500);
-        s.setMaxWidth(2400);
     }
     
     public static boolean collision(HashSet<Polygon> hitboxes, Node object) {
@@ -116,5 +108,18 @@ public class OverworldUI {
         elements.add(rival);
         elements.add(player);
         elements.add(house1Top);
+    }
+
+    private static void buildHitboxes(List<Node> elements, HashSet<Polygon> hitboxes) {
+        Polygon houseHitbox = GraphicsBuilder.getPolygon(0, 0, 255, 0, 255, 20, 0, 20, false, 390, 734);
+        Polygon rivalHitbox = GraphicsBuilder.getPolygon(0, 0, 40, 0, 40, 140, 0, 140, false, 1320, 70);
+        Polygon rivalTalkbox = GraphicsBuilder.getPolygon(0, 0, 150, 0, 150, 60, 0, 60, false, 1260, 130);
+        
+        elements.add(houseHitbox);
+        elements.add(rivalHitbox);
+        elements.add(rivalTalkbox);
+        
+        hitboxes.add(houseHitbox);
+        hitboxes.add(rivalHitbox);
     }
 }
