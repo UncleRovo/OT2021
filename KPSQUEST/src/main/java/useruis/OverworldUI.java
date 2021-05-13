@@ -48,7 +48,7 @@ public class OverworldUI {
     public static void setKeyDetection(Scene ovscene, List<Node> elements, HashSet<Polygon> hitboxes, DialogueHandler convo) {
         ovscene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             DialogueHandler diaHandler = convo;
-            Node player = elements.get(5);
+            Node player = elements.get(7);
             KeyCode latest = null;
             @Override
             public void handle(KeyEvent event) {
@@ -103,7 +103,7 @@ public class OverworldUI {
 
     private static void buildGraphics(List<Node> elements) {
         ImageView background = GraphicsBuilder.getGraphicsObject("file:tausta_test.jpg", -900, 0, 1, false);
-        ImageView player = GraphicsBuilder.getGraphicsObject("file:protagonist.png", 0, 0, 0.5, true);
+        ImageView player = GraphicsBuilder.getGraphicsObject("file:protagonist.png", 50, 0, 0.5, true);
         ImageView house1Bottom = GraphicsBuilder.getGraphicsObject("file:talo_ala.png", 250, 700, 0.5, true);
         ImageView house1Top = GraphicsBuilder.getGraphicsObject("file:talo_yla.png", 241, 578, 0.5, true);
         ImageView rival = GraphicsBuilder.getGraphicsObject("file:rival.png", 1250, 0, 0.5, true);
@@ -120,10 +120,10 @@ public class OverworldUI {
         elements.add(fence1);
         elements.add(fence2);
         elements.add(rival);
-        elements.add(player);
-        elements.add(house1Top);
         elements.add(leftfence);
         elements.add(rightfence);
+        elements.add(player);
+        elements.add(house1Top);
         elements.add(longfence);
     }
 
@@ -131,12 +131,27 @@ public class OverworldUI {
         Polygon houseHitbox = GraphicsBuilder.getPolygon(255, 255, 20, 20, false, 390, 734);
         Polygon rivalHitbox = GraphicsBuilder.getPolygon(40, 40, 140, 140, false, 1320, 70);
         Polygon rivalTalkbox = GraphicsBuilder.getPolygon(150, 150, 60, 60, false, 1260, 130);
+        Polygon lowfenceHitbox = GraphicsBuilder.getPolygon(1750, 1750, 60, 60, false, 50, 1010);
+        Polygon shortfenceHitbox1 = GraphicsBuilder.getPolygon(765, 765, 60, 60, false, 50, -52);
+        Polygon shortfenceHitbox2 = GraphicsBuilder.getPolygon(765, 765, 60, 60, false, 965, -52);
+        Polygon leftfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 28, 0);
+        Polygon rightfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 1760, 0);
         
         elements.add(houseHitbox);
         elements.add(rivalHitbox);
         elements.add(rivalTalkbox);
+        elements.add(lowfenceHitbox);
+        elements.add(shortfenceHitbox1);
+        elements.add(shortfenceHitbox2);
+        elements.add(leftfenceHitbox);
+        elements.add(rightfenceHitbox);
         
         hitboxes.add(houseHitbox);
         hitboxes.add(rivalHitbox);
+        hitboxes.add(shortfenceHitbox1);
+        hitboxes.add(shortfenceHitbox2);
+        hitboxes.add(lowfenceHitbox);
+        hitboxes.add(leftfenceHitbox);
+        hitboxes.add(rightfenceHitbox);
     }
 }
