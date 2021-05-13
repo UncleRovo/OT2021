@@ -108,6 +108,7 @@ public class OverworldUI {
         ImageView house1Top = GraphicsBuilder.getGraphicsObject("file:talo_yla.png", 241, 578, 0.5, true);
         ImageView rival = GraphicsBuilder.getGraphicsObject("file:rival.png", 1250, 0, 0.5, true);
         ImageView fence1 = GraphicsBuilder.getGraphicsObject("file:fence_short.png", 0, 0, 0.98, true);
+        ImageView longfence = GraphicsBuilder.getGraphicsObject("file:fence_long.png", -15, 925, 0.98, true);
         ImageView fence2 = GraphicsBuilder.getGraphicsObject("file:fence_short.png", 950, 0, 0.98, true);
         elements.add(background);
         elements.add(house1Bottom);
@@ -116,6 +117,7 @@ public class OverworldUI {
         elements.add(rival);
         elements.add(player);
         elements.add(house1Top);
+        elements.add(longfence);
     }
 
     private static void buildHitboxes(List<Node> elements, HashSet<Polygon> hitboxes) {
