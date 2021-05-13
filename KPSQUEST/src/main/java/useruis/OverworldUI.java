@@ -32,7 +32,7 @@ public class OverworldUI {
         pane2.getChildren().addAll(convo.dialogueBox, convo.text);
         
         Scene ovscene = new Scene(pane2);
-        setKeyDetection(ovscene, elements, hitboxes, convo);
+        setKeyDetection(ovscene, elements, hitboxes, convo, pane2);
         
         s.setScene(ovscene);
         s.setHeight(1200);
@@ -45,7 +45,7 @@ public class OverworldUI {
     * Metodi tarkastelee napinpainalluksia, ja suorittaa tarvittavat toiminnot
     * oikean napin ollessa painettuna.
     */
-    public static void setKeyDetection(Scene ovscene, List<Node> elements, HashSet<Polygon> hitboxes, DialogueHandler convo) {
+    public static void setKeyDetection(Scene ovscene, List<Node> elements, HashSet<Polygon> hitboxes, DialogueHandler convo, Pane pane) {
         ovscene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             DialogueHandler diaHandler = convo;
             Node player = elements.get(7);
@@ -90,8 +90,17 @@ public class OverworldUI {
                     }
                 }
                 
-                if (event.getCode() == KeyCode.X && player.getBoundsInParent().intersects(elements.get(7).getBoundsInParent())) {
+                if (event.getCode() == KeyCode.X && player.getBoundsInParent().intersects(elements.get(elements.size() - 2).getBoundsInParent())) {
                     diaHandler.talk();
+                }
+                
+                if (player.getBoundsInParent().intersects(elements.get(elements.size() - 1).getBoundsInParent())) {
+                    Node bg = pane.getChildren().get(0);
+                    pane.getChildren().clear();
+                    hitboxes.clear();
+                    
+                    player.setTranslateY(900);
+                    pane.getChildren().addAll(bg, player);
                 }
             }
         });
@@ -136,15 +145,18 @@ public class OverworldUI {
         Polygon shortfenceHitbox2 = GraphicsBuilder.getPolygon(765, 765, 60, 60, false, 965, -52);
         Polygon leftfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 28, 0);
         Polygon rightfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 1760, 0);
+        Polygon newAreaTrigger = GraphicsBuilder.getPolygon(140, 140, 60, 60, false, 820, -200);
+        
         
         elements.add(houseHitbox);
         elements.add(rivalHitbox);
-        elements.add(rivalTalkbox);
         elements.add(lowfenceHitbox);
         elements.add(shortfenceHitbox1);
         elements.add(shortfenceHitbox2);
         elements.add(leftfenceHitbox);
         elements.add(rightfenceHitbox);
+        elements.add(rivalTalkbox);
+        elements.add(newAreaTrigger);
         
         hitboxes.add(houseHitbox);
         hitboxes.add(rivalHitbox);
@@ -153,5 +165,6 @@ public class OverworldUI {
         hitboxes.add(lowfenceHitbox);
         hitboxes.add(leftfenceHitbox);
         hitboxes.add(rightfenceHitbox);
+        //hitboxes.add(newAreaTrigger);
     }
 }
