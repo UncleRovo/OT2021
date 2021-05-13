@@ -110,6 +110,11 @@ public class OverworldUI {
         ImageView fence1 = GraphicsBuilder.getGraphicsObject("file:fence_short.png", 0, 0, 0.98, true);
         ImageView longfence = GraphicsBuilder.getGraphicsObject("file:fence_long.png", -15, 925, 0.98, true);
         ImageView fence2 = GraphicsBuilder.getGraphicsObject("file:fence_short.png", 950, 0, 0.98, true);
+        ImageView leftfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_left.png", 0, -42, 0.98, true);
+        ImageView rightfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_right.png", 1750, -42, 0.98, true);
+        
+        leftfence.setScaleY(0.92);
+        rightfence.setScaleY(0.92);
         elements.add(background);
         elements.add(house1Bottom);
         elements.add(fence1);
@@ -117,6 +122,8 @@ public class OverworldUI {
         elements.add(rival);
         elements.add(player);
         elements.add(house1Top);
+        elements.add(leftfence);
+        elements.add(rightfence);
         elements.add(longfence);
     }
 
