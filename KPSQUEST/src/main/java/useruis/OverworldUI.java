@@ -93,10 +93,22 @@ public class OverworldUI {
                     diaHandler.talk();
                 }
                 
-                if (player.getBoundsInParent().intersects(elements.get(elements.size() - 1).getBoundsInParent()) && elements.get(elements.size() - 1).getId().equals("mapborder1")) {
-                    buildOverWorldScene(2, elements, hitboxes);
-                    player = elements.get(1);
+                if (player.getBoundsInParent().intersects(elements.get(elements.size() - 1).getBoundsInParent()) && elements.get(elements.size() - 1).getId().contains("mapborder")) {
+                    int i = 1;
+                    
+                    if (elements.get(elements.size() - 1).getId().contains("2")) {
+                        i = 2;
+                    }
+                    buildOverWorldScene(i, elements, hitboxes);
+                    player = findPlayer(elements);
                     pane.getChildren().addAll(elements);
+                }
+                
+                if (event.getCode() == KeyCode.P) {
+                    System.out.println(player);
+                    System.out.println(player.getBoundsInParent());
+                    System.out.println(elements.get(elements.size() - 1));
+                    System.out.println(elements.get(elements.size() - 1).getId());
                 }
             }
         });
@@ -109,7 +121,7 @@ public class OverworldUI {
     private static void buildGraphics(List<Node> elements, int i) {
         if (i == 1) {
             ImageView background = GraphicsBuilder.getGraphicsObject("file:tausta_test.jpg", -900, 0, 1, false);
-            ImageView player = GraphicsBuilder.getGraphicsObject("file:protagonist.png", 50, 0, 0.5, true);
+            ImageView player = GraphicsBuilder.getGraphicsObject("file:protagonist.png", 800, -75, 0.5, true);
             ImageView house1Bottom = GraphicsBuilder.getGraphicsObject("file:talo_ala.png", 250, 700, 0.5, true);
             ImageView house1Top = GraphicsBuilder.getGraphicsObject("file:talo_yla.png", 241, 578, 0.5, true);
             ImageView rival = GraphicsBuilder.getGraphicsObject("file:rival.png", 1250, 0, 0.5, true);
@@ -121,6 +133,7 @@ public class OverworldUI {
         
             leftfence.setScaleY(0.92);
             rightfence.setScaleY(0.92);
+            player.setId("player");
             elements.add(background);
             elements.add(house1Bottom);
             elements.add(fence1);
@@ -133,7 +146,9 @@ public class OverworldUI {
             elements.add(longfence);
         } else if (i == 2) {
             ImageView background = GraphicsBuilder.getGraphicsObject("file:tausta_test.jpg", -900, 0, 1, false);
+            background.setId("background");
             ImageView player = GraphicsBuilder.getGraphicsObject("file:protagonist.png", 790, 900, 0.5, true);
+            player.setId("player");
             elements.add(background);
             elements.add(player);
         }
@@ -150,7 +165,7 @@ public class OverworldUI {
             Polygon leftfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 28, 0);
             Polygon rightfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 1760, 0);
             Polygon newAreaTrigger = GraphicsBuilder.getPolygon(140, 140, 60, 60, false, 820, -200);
-            newAreaTrigger.setId("mapborder1");
+            newAreaTrigger.setId("mapborder2");
         
         
             elements.add(houseHitbox);
@@ -170,6 +185,11 @@ public class OverworldUI {
             hitboxes.add(lowfenceHitbox);
             hitboxes.add(leftfenceHitbox);
             hitboxes.add(rightfenceHitbox);
+        } else if (i == 2) {
+            Polygon newAreaTrigger = GraphicsBuilder.getPolygon(140, 140, 60, 60, true, 820, 1200);
+            newAreaTrigger.setId("mapborder1");
+            elements.add(newAreaTrigger);
+            hitboxes.add(newAreaTrigger);
         }
     }
 
@@ -178,5 +198,18 @@ public class OverworldUI {
         hitboxes.clear();
         buildGraphics(elements, i);
         buildHitboxes(elements, hitboxes, i);
+    }
+    
+    private static Node findPlayer(List<Node> elements) {
+        for (Node n: elements) {
+            try {
+                if (n.getId().equals("player")) {
+                return n;
+                }
+            } catch (Exception e) {
+                
+            }
+        }
+        return null;
     }
 }
