@@ -23,8 +23,7 @@ public class OverworldUI {
         pane2.setMinSize(500, 300);
         pane2.setMaxSize(700, 400);
         
-        buildGraphics(elements);
-        buildHitboxes(elements, hitboxes);
+        buildOverWorldScene(1, elements, hitboxes);
         
         pane2.getChildren().addAll(elements);
         
@@ -94,13 +93,10 @@ public class OverworldUI {
                     diaHandler.talk();
                 }
                 
-                if (player.getBoundsInParent().intersects(elements.get(elements.size() - 1).getBoundsInParent())) {
-                    Node bg = pane.getChildren().get(0);
-                    pane.getChildren().clear();
-                    hitboxes.clear();
-                    
-                    player.setTranslateY(900);
-                    pane.getChildren().addAll(bg, player);
+                if (player.getBoundsInParent().intersects(elements.get(elements.size() - 1).getBoundsInParent()) && elements.get(elements.size() - 1).getId().equals("mapborder1")) {
+                    buildOverWorldScene(2, elements, hitboxes);
+                    player = elements.get(1);
+                    pane.getChildren().addAll(elements);
                 }
             }
         });
@@ -110,61 +106,77 @@ public class OverworldUI {
         return hitboxes.stream().anyMatch((hitbox) -> (object.getBoundsInParent().intersects(hitbox.getBoundsInParent())));
     }
 
-    private static void buildGraphics(List<Node> elements) {
-        ImageView background = GraphicsBuilder.getGraphicsObject("file:tausta_test.jpg", -900, 0, 1, false);
-        ImageView player = GraphicsBuilder.getGraphicsObject("file:protagonist.png", 50, 0, 0.5, true);
-        ImageView house1Bottom = GraphicsBuilder.getGraphicsObject("file:talo_ala.png", 250, 700, 0.5, true);
-        ImageView house1Top = GraphicsBuilder.getGraphicsObject("file:talo_yla.png", 241, 578, 0.5, true);
-        ImageView rival = GraphicsBuilder.getGraphicsObject("file:rival.png", 1250, 0, 0.5, true);
-        ImageView fence1 = GraphicsBuilder.getGraphicsObject("file:fence_short.png", 0, 0, 0.98, true);
-        ImageView longfence = GraphicsBuilder.getGraphicsObject("file:fence_long.png", -15, 925, 0.98, true);
-        ImageView fence2 = GraphicsBuilder.getGraphicsObject("file:fence_short.png", 950, 0, 0.98, true);
-        ImageView leftfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_left.png", 0, -42, 0.98, true);
-        ImageView rightfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_right.png", 1750, -42, 0.98, true);
+    private static void buildGraphics(List<Node> elements, int i) {
+        if (i == 1) {
+            ImageView background = GraphicsBuilder.getGraphicsObject("file:tausta_test.jpg", -900, 0, 1, false);
+            ImageView player = GraphicsBuilder.getGraphicsObject("file:protagonist.png", 50, 0, 0.5, true);
+            ImageView house1Bottom = GraphicsBuilder.getGraphicsObject("file:talo_ala.png", 250, 700, 0.5, true);
+            ImageView house1Top = GraphicsBuilder.getGraphicsObject("file:talo_yla.png", 241, 578, 0.5, true);
+            ImageView rival = GraphicsBuilder.getGraphicsObject("file:rival.png", 1250, 0, 0.5, true);
+            ImageView fence1 = GraphicsBuilder.getGraphicsObject("file:fence_short.png", 0, 0, 0.98, true);
+            ImageView longfence = GraphicsBuilder.getGraphicsObject("file:fence_long.png", -15, 925, 0.98, true);
+            ImageView fence2 = GraphicsBuilder.getGraphicsObject("file:fence_short.png", 950, 0, 0.98, true);
+            ImageView leftfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_left.png", 0, -42, 0.98, true);
+            ImageView rightfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_right.png", 1750, -42, 0.98, true);
         
-        leftfence.setScaleY(0.92);
-        rightfence.setScaleY(0.92);
-        elements.add(background);
-        elements.add(house1Bottom);
-        elements.add(fence1);
-        elements.add(fence2);
-        elements.add(rival);
-        elements.add(leftfence);
-        elements.add(rightfence);
-        elements.add(player);
-        elements.add(house1Top);
-        elements.add(longfence);
+            leftfence.setScaleY(0.92);
+            rightfence.setScaleY(0.92);
+            elements.add(background);
+            elements.add(house1Bottom);
+            elements.add(fence1);
+            elements.add(fence2);
+            elements.add(rival);
+            elements.add(leftfence);
+            elements.add(rightfence);
+            elements.add(player);
+            elements.add(house1Top);
+            elements.add(longfence);
+        } else if (i == 2) {
+            ImageView background = GraphicsBuilder.getGraphicsObject("file:tausta_test.jpg", -900, 0, 1, false);
+            ImageView player = GraphicsBuilder.getGraphicsObject("file:protagonist.png", 790, 900, 0.5, true);
+            elements.add(background);
+            elements.add(player);
+        }
     }
 
-    private static void buildHitboxes(List<Node> elements, HashSet<Polygon> hitboxes) {
-        Polygon houseHitbox = GraphicsBuilder.getPolygon(255, 255, 20, 20, false, 390, 734);
-        Polygon rivalHitbox = GraphicsBuilder.getPolygon(40, 40, 140, 140, false, 1320, 70);
-        Polygon rivalTalkbox = GraphicsBuilder.getPolygon(150, 150, 60, 60, false, 1260, 130);
-        Polygon lowfenceHitbox = GraphicsBuilder.getPolygon(1750, 1750, 60, 60, false, 50, 1010);
-        Polygon shortfenceHitbox1 = GraphicsBuilder.getPolygon(765, 765, 60, 60, false, 50, -52);
-        Polygon shortfenceHitbox2 = GraphicsBuilder.getPolygon(765, 765, 60, 60, false, 965, -52);
-        Polygon leftfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 28, 0);
-        Polygon rightfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 1760, 0);
-        Polygon newAreaTrigger = GraphicsBuilder.getPolygon(140, 140, 60, 60, false, 820, -200);
+    private static void buildHitboxes(List<Node> elements, HashSet<Polygon> hitboxes, int i) {
+        if (i == 1) {
+            Polygon houseHitbox = GraphicsBuilder.getPolygon(255, 255, 20, 20, false, 390, 734);
+            Polygon rivalHitbox = GraphicsBuilder.getPolygon(40, 40, 140, 140, false, 1320, 70);
+            Polygon rivalTalkbox = GraphicsBuilder.getPolygon(150, 150, 60, 60, false, 1260, 130);
+            Polygon lowfenceHitbox = GraphicsBuilder.getPolygon(1750, 1750, 60, 60, false, 50, 1010);
+            Polygon shortfenceHitbox1 = GraphicsBuilder.getPolygon(765, 765, 60, 60, false, 50, -52);
+            Polygon shortfenceHitbox2 = GraphicsBuilder.getPolygon(765, 765, 60, 60, false, 965, -52);
+            Polygon leftfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 28, 0);
+            Polygon rightfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 1760, 0);
+            Polygon newAreaTrigger = GraphicsBuilder.getPolygon(140, 140, 60, 60, false, 820, -200);
+            newAreaTrigger.setId("mapborder1");
         
         
-        elements.add(houseHitbox);
-        elements.add(rivalHitbox);
-        elements.add(lowfenceHitbox);
-        elements.add(shortfenceHitbox1);
-        elements.add(shortfenceHitbox2);
-        elements.add(leftfenceHitbox);
-        elements.add(rightfenceHitbox);
-        elements.add(rivalTalkbox);
-        elements.add(newAreaTrigger);
+            elements.add(houseHitbox);
+            elements.add(rivalHitbox);
+            elements.add(lowfenceHitbox);
+            elements.add(shortfenceHitbox1);
+            elements.add(shortfenceHitbox2);
+            elements.add(leftfenceHitbox);
+            elements.add(rightfenceHitbox);
+            elements.add(rivalTalkbox);
+            elements.add(newAreaTrigger);
         
-        hitboxes.add(houseHitbox);
-        hitboxes.add(rivalHitbox);
-        hitboxes.add(shortfenceHitbox1);
-        hitboxes.add(shortfenceHitbox2);
-        hitboxes.add(lowfenceHitbox);
-        hitboxes.add(leftfenceHitbox);
-        hitboxes.add(rightfenceHitbox);
-        //hitboxes.add(newAreaTrigger);
+            hitboxes.add(houseHitbox);
+            hitboxes.add(rivalHitbox);
+            hitboxes.add(shortfenceHitbox1);
+            hitboxes.add(shortfenceHitbox2);
+            hitboxes.add(lowfenceHitbox);
+            hitboxes.add(leftfenceHitbox);
+            hitboxes.add(rightfenceHitbox);
+        }
+    }
+
+    private static void buildOverWorldScene(int i, List<Node> elements, HashSet<Polygon> hitboxes) {
+        elements.clear();
+        hitboxes.clear();
+        buildGraphics(elements, i);
+        buildHitboxes(elements, hitboxes, i);
     }
 }
