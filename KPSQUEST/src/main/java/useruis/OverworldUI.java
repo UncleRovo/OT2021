@@ -27,7 +27,7 @@ public class OverworldUI {
         
         pane2.getChildren().addAll(elements);
         
-        DialogueHandler convo = new DialogueHandler();
+        DialogueHandler convo = new DialogueHandler(pane2, elements);
         pane2.getChildren().addAll(convo.dialogueBox, convo.text);
         
         Scene ovscene = new Scene(pane2);

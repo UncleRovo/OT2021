@@ -1,7 +1,10 @@
 package useruis;
 
 import data.Dialogue;
+import java.util.List;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
@@ -19,16 +22,26 @@ public class DialogueHandler {
     int i = -1;
     Dialogue d = new Dialogue();
     boolean isChoice;
+    Battlehandler battle;
+    boolean isBattle;
+    List<Node> elements;
+    Polygon battleBox;
     
-    public DialogueHandler() {
+    
+    public DialogueHandler(Pane p, List<Node> elements) {
         dialogueBox = GraphicsBuilder.getPolygon(1750, 1750, 400, 400, false, 50, 600);
         dialogueBox.setFill(Color.LIGHTGRAY);
+        battleBox = GraphicsBuilder.getPolygon(1750, 1750, 400, 400, false, 50, 200);
+        battleBox.setFill(Color.RED);
         isDialogue = false;
         isChoice = false;
+        isBattle = false;
         text.setVisible(false);
         text.setFont(new Font(95));
         text.setTranslateX(dialogueBox.getTranslateX() + 40);
         text.setTranslateY(dialogueBox.getTranslateY() + 20);
+        battle = new Battlehandler(elements, p);
+        this.elements = elements;
     }
     
     /**
@@ -42,6 +55,13 @@ public class DialogueHandler {
         } else if (options[i].contains("_CHOICE_")) {
             isChoice = true;
             i++;
+        } else if (options[i].contains("_BATTLE_")) {
+            isChoice = false;
+            isBattle = true;
+            text.setText("GAME ON!");
+            battle.startBattle();
+            i++;
+            return;
         }
         
         text.setText(options[i]);
@@ -63,6 +83,7 @@ public class DialogueHandler {
         this.isChoice = false;
         text.setVisible(true);
         dialogueBox.setVisible(true);
+        isBattle = false;
         this.talk();
     }
 
