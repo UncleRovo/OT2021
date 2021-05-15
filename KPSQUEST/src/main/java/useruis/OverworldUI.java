@@ -99,9 +99,11 @@ public class OverworldUI {
                     if (elements.get(elements.size() - 1).getId().contains("2")) {
                         i = 2;
                     }
+                    pane.getChildren().clear();
                     buildOverWorldScene(i, elements, hitboxes);
                     player = findPlayer(elements);
                     pane.getChildren().addAll(elements);
+                    pane.getChildren().addAll(diaHandler.dialogueBox, diaHandler.text);
                 }
                 
                 if (event.getCode() == KeyCode.P) {
