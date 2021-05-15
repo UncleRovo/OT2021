@@ -18,11 +18,13 @@ public class DialogueHandler {
     Label text = new Label("_");
     int i = -1;
     Dialogue d = new Dialogue();
+    boolean isChoice;
     
     public DialogueHandler() {
         dialogueBox = GraphicsBuilder.getPolygon(1750, 1750, 400, 400, false, 50, 600);
         dialogueBox.setFill(Color.LIGHTGRAY);
         isDialogue = false;
+        isChoice = false;
         text.setVisible(false);
         text.setFont(new Font(95));
         text.setTranslateX(dialogueBox.getTranslateX() + 40);
@@ -33,16 +35,17 @@ public class DialogueHandler {
     * Metodi suorittaa puhekuplan ja tekstin piirtämisen ruudulle.
     */
     public void talk() {
-        isDialogue = true;
-        text.setVisible(true);
-        dialogueBox.setVisible(true);
-        i++;
+        
         if (options[i].contains("_END_")) {
             endConvo();
             return;
+        } else if (options[i].contains("_CHOICE_")) {
+            isChoice = true;
+            i++;
         }
         
         text.setText(options[i]);
+        i++;
     }
     
     public void endConvo() {
@@ -55,5 +58,16 @@ public class DialogueHandler {
     
     public void setupTalk(int i) {
         options = d.lines[i];
+        this.i = 0;
+        this.isDialogue = true;
+        this.isChoice = false;
+        text.setVisible(true);
+        dialogueBox.setVisible(true);
+        this.talk();
+    }
+
+    void selectYesOrNo(int i) {
+        this.i += i;
+        this.isChoice = false;
     }
 }

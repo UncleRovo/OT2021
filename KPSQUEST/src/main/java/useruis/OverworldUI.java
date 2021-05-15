@@ -89,10 +89,22 @@ public class OverworldUI {
                     }
                 }
                 
-                if (event.getCode() == KeyCode.X && player.getBoundsInParent().intersects(elements.get(elements.size() - 2).getBoundsInParent())) {
-                    diaHandler.setupTalk(Integer.valueOf(elements.get(elements.size() - 2).getId()));
-                    diaHandler.talk();
+                if ((event.getCode() == KeyCode.X && player.getBoundsInParent().intersects(elements.get(elements.size() - 2).getBoundsInParent())) || (diaHandler.isChoice && (event.getCode() == KeyCode.C || event.getCode() == KeyCode.V))) {
+                    if (diaHandler.isDialogue == false) {
+                        diaHandler.setupTalk(Integer.valueOf(elements.get(elements.size() - 2).getId()));
+                    } else if (diaHandler.isDialogue && diaHandler.isChoice == false) {
+                        diaHandler.talk();
+                    } else if (diaHandler.isDialogue && event.getCode() == KeyCode.C && diaHandler.isChoice) {
+                        diaHandler.selectYesOrNo(0);
+                        diaHandler.talk();
+                        diaHandler.i++;
+                    } else if (diaHandler.isDialogue && event.getCode() == KeyCode.V && diaHandler.isChoice) {
+                        diaHandler.selectYesOrNo(1);
+                        diaHandler.talk();
+                    }
                 }
+                
+                
                 
                 if (player.getBoundsInParent().intersects(elements.get(elements.size() - 1).getBoundsInParent()) && elements.get(elements.size() - 1).getId().contains("mapborder")) {
                     int i = 1;
