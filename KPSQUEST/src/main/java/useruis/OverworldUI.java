@@ -90,6 +90,7 @@ public class OverworldUI {
                 }
                 
                 if (event.getCode() == KeyCode.X && player.getBoundsInParent().intersects(elements.get(elements.size() - 2).getBoundsInParent())) {
+                    diaHandler.setupTalk(Integer.valueOf(elements.get(elements.size() - 2).getId()));
                     diaHandler.talk();
                 }
                 
@@ -178,6 +179,7 @@ public class OverworldUI {
             elements.add(leftfenceHitbox);
             elements.add(rightfenceHitbox);
             elements.add(rivalTalkbox);
+            rivalTalkbox.setId("0");
             elements.add(newAreaTrigger);
         
             hitboxes.add(houseHitbox);

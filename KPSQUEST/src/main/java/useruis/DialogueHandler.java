@@ -1,5 +1,6 @@
 package useruis;
 
+import data.Dialogue;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -16,12 +17,9 @@ public class DialogueHandler {
     Polygon dialogueBox;
     Label text = new Label("_");
     int i = -1;
+    Dialogue d = new Dialogue();
     
     public DialogueHandler() {
-        options = new String[3];
-        options[0] = "Hello. Have you ever wondered why...";
-        options[1] = "Actually nevermind.";
-        options[2] = "The dev hasn't implemented fighting\n mechanics yet";
         dialogueBox = GraphicsBuilder.getPolygon(1750, 1750, 400, 400, false, 50, 600);
         dialogueBox.setFill(Color.LIGHTGRAY);
         isDialogue = false;
@@ -39,7 +37,7 @@ public class DialogueHandler {
         text.setVisible(true);
         dialogueBox.setVisible(true);
         i++;
-        if (i == options.length) {
+        if (options[i].contains("_END_")) {
             endConvo();
             return;
         }
@@ -53,5 +51,9 @@ public class DialogueHandler {
         dialogueBox.setVisible(false);
         text.setText("_");
         i = -1;
+    }
+    
+    public void setupTalk(int i) {
+        options = d.lines[i];
     }
 }
