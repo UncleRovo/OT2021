@@ -9,3 +9,5 @@
 | 14.5.  | 0.5    | refaktorointia |
 | 14.5.  | 1    | virheilmoitukseton versio alueiden välillä siirtymisestä |
 | 14.5.  | 1    | sovelluslogiikan suunnittelua ja kirjoitusta taistelumekaniikoille |
+| 15.5.  | 2    | ratkaisunhaku .jar -tiedoston generointiin kuvatiedostojen kanssa ja sen toteuttaminen |
+| 15.5.  | 1    | tiedostonimen haun parantelua, pieniä bugien korjauksia |
