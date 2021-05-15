@@ -27,7 +27,7 @@ public class Utils {
         if (cl.getResource(name[1]) != null) {
             path = cl.getResource(name[1]).toString();
         }
-        return path;
+        return "file:src/main/resources/Gamedata/Graphics/" + name[1];
     }
     
     public static String getSavePath(String path) {
