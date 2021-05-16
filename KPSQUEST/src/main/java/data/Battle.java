@@ -6,6 +6,7 @@ public class Battle {
     Character player;
     Character opponent;
     int stake;
+    public String option;
 
     public Battle(Character player, Character opponent, int stake) {
         this.player = player;
@@ -13,11 +14,15 @@ public class Battle {
         this.stake = stake;
     }
     
-    public void fight() {
+    public String fight() {
         if (winner() == player) {
             player.addMoney(opponent.takeMoney(stake));
+            return winmessage();
         } else if (tryToConvince() == false) {
             opponent.addMoney(player.takeMoney(stake));
+            return this.losemessage();
+        } else {
+            return this.newchancemessage();
         }
     }
     
@@ -62,5 +67,30 @@ public class Battle {
         int chances = 1 + (charDiff * 2);
         
         return chances;
+    }
+
+    private String winmessage() {
+        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getOppositeOption(option) +", you won! You get " + stake + " moneys for winning.";
+    }
+    
+    private String losemessage() {
+        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getOppositeOption(option) +", you lost! You part your ways with " + stake + " of your moneys.";
+    }
+    
+    private String newchancemessage() {
+        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getOppositeOption(option) +", you lost! Though, Rival thinks you're a great guy so you get to try again!";
+    }
+
+    private String getOppositeOption(String option) {
+        option = option.toLowerCase();
+        
+        switch (option) {
+            case "rock":
+                return "scissors";
+            case "paper":
+                return "rock";
+            default:
+                return "paper";
+        }
     }
 }

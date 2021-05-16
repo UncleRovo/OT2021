@@ -1,6 +1,7 @@
 package useruis;
 
 import data.Dialogue;
+import data.Character;
 import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -11,10 +12,7 @@ import javafx.scene.text.Font;
 
 public class DialogueHandler {
     
-    /**
-    * Väliaikaisratkaisuna hahmojen vuorosanoille toimii taulukko,
-    * jossa on alkioina hahmojen vuorosanoja.
-    */
+    
     String[] options;
     boolean isDialogue;
     Polygon dialogueBox;
@@ -46,8 +44,10 @@ public class DialogueHandler {
     
     /**
     * Metodi suorittaa puhekuplan ja tekstin piirtämisen ruudulle.
+     * @param player
+     * @param rival
     */
-    public void talk() {
+    public void talk(Character player, Character rival) {
         
         if (options[i].contains("_END_")) {
             endConvo();
@@ -59,7 +59,7 @@ public class DialogueHandler {
             isChoice = false;
             isBattle = true;
             text.setText("GAME ON!");
-            battle.startBattle();
+            battle.startBattle(player, rival);
             i++;
             return;
         }
@@ -84,7 +84,7 @@ public class DialogueHandler {
         text.setVisible(true);
         dialogueBox.setVisible(true);
         isBattle = false;
-        this.talk();
+        this.talk(null, null);
     }
 
     void selectYesOrNo(int i) {

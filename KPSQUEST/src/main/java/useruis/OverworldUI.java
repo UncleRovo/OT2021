@@ -1,6 +1,7 @@
 package useruis;
 
 import data.Savefile;
+import data.Character;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -47,6 +48,7 @@ public class OverworldUI {
     */
     public static void setKeyDetection(Scene ovscene, List<Node> elements, HashSet<Polygon> hitboxes, DialogueHandler convo, Pane pane, Savefile file) {
         ovscene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            Character rival = new Character("Rival", 6, 5, 500);
             DialogueHandler diaHandler = convo;
             Node player = elements.get(7);
             KeyCode latest = null;
@@ -99,14 +101,14 @@ public class OverworldUI {
                     if (diaHandler.isDialogue == false) {
                         diaHandler.setupTalk(Integer.valueOf(elements.get(elements.size() - 2).getId()));
                     } else if (diaHandler.isDialogue && diaHandler.isChoice == false) {
-                        diaHandler.talk();
+                        diaHandler.talk(file.character, rival);
                     } else if (diaHandler.isDialogue && event.getCode() == KeyCode.C && diaHandler.isChoice) {
                         diaHandler.selectYesOrNo(0);
-                        diaHandler.talk();
+                        diaHandler.talk(file.character, rival);
                         diaHandler.i++;
                     } else if (diaHandler.isDialogue && event.getCode() == KeyCode.V && diaHandler.isChoice) {
                         diaHandler.selectYesOrNo(1);
-                        diaHandler.talk();
+                        diaHandler.talk(file.character, rival);
                     }
                 }
                 

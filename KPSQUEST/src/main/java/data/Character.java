@@ -9,6 +9,15 @@ public class Character {
     public Character(String name) {
         this.name = name;
     }
+
+    public Character(String name, int luck, int charisma, int money) {
+        this.name = name;
+        this.luck = luck;
+        this.charisma = charisma;
+        this.money = money;
+    }
+    
+    
     
     public int takeMoney(int i) {
         if (money - i < 0) {
