@@ -38,7 +38,6 @@ public class Utils {
         }
 
         cl.getResourceAsStream("Gamedata/SaveFiles/" + name);
-        System.out.println("Haetaan resurssia: " + cl.getResource("Gamedata/SaveFiles/" + name));
 
         if (cl.getResource("Gamedata/SaveFiles/" + name) != null) {
             path = cl.getResource("Gamedata/SaveFiles/" + name).toString();
@@ -49,8 +48,6 @@ public class Utils {
         } else {
             path = "src/main/resources/Gamedata/SaveFiles/" + name;
         }
-
-        System.out.println("POLKU ON: " + path);
 
         return path;
     }

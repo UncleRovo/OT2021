@@ -32,7 +32,6 @@ public class Savefiles {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Mentiin virheeseen: " + e);
             try {
                 InputStream is = this.getClass().getClassLoader().getResourceAsStream("Gamedata/SaveFiles/saves.txt");
                 Scanner t = new Scanner(is);
@@ -46,7 +45,6 @@ public class Savefiles {
                     }
                 }
             } catch (Exception ee) {
-                System.out.println(ee);
             }
         }
     }
