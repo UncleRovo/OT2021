@@ -148,6 +148,7 @@ public class OverworldUI {
     }
 
     private static void buildGraphics(List<Node> elements, int i) {
+        
         if (i == 1) {
             ImageView background = GraphicsBuilder.getGraphicsObject("file:tausta_test.jpg", -900, 0, 1, false);
             ImageView player = GraphicsBuilder.getGraphicsObject("file:protagonist.png", 800, -75, 0.5, true);
@@ -159,6 +160,7 @@ public class OverworldUI {
             ImageView fence2 = GraphicsBuilder.getGraphicsObject("file:fence_short.png", 950, 0, 0.98, true);
             ImageView leftfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_left.png", 0, -42, 0.98, true);
             ImageView rightfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_right.png", 1750, -42, 0.98, true);
+            
         
             leftfence.setScaleY(0.92);
             rightfence.setScaleY(0.92);
@@ -178,8 +180,21 @@ public class OverworldUI {
             background.setId("background");
             ImageView player = GraphicsBuilder.getGraphicsObject("file:protagonist.png", 790, 900, 0.5, true);
             player.setId("player");
+            ImageView longfence = GraphicsBuilder.getGraphicsObject("file:fence_long.png", -15, 0, 0.98, true);
+            ImageView fence1 = GraphicsBuilder.getGraphicsObject("file:fence_short.png", 0, 920, 0.98, true);
+            ImageView fence2 = GraphicsBuilder.getGraphicsObject("file:fence_short.png", 950, 920, 0.98, true);
+            ImageView leftfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_left.png", 0, -42, 0.98, true);
+            ImageView rightfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_right.png", 1750, -42, 0.98, true);
+            
+            
             elements.add(background);
+            elements.add(longfence);
+            elements.add(leftfence);
+            elements.add(rightfence);
+            
             elements.add(player);
+            elements.add(fence1);
+            elements.add(fence2);
         }
     }
 
