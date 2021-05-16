@@ -43,3 +43,6 @@ Eri arvot on eroteltu toisistaan alaviivalla. Arvot ovat järjestyksessä:
 ### Grafiikat
 
 Pelin grafiikat piirretään ImageView -olioina ruudulle. Tausta piirretään sellaisenaan .jpg-muodossa. Jos kyseessä on muunlainen graafinen elementti, käyttää ohjelma bluescreen-tekniikkaa erottelemaan itse grafiikan sinisestä taustasta. Tästä vastaa GraphicsBuilder -luokan metodi getImageWithoutBlue(). Poistettava sinisen sävy on hex-koodina 0000ff.
+
+### Taistelu
+Taistelun kummallakin osapuolella on ominaisuus luck, eli onni. Mahdollisuus voittaa vastustaja lasketaan kaavalla (oma onni - vastustajan onni) * 4 + 45 + oma onni. Tasapeli ei toistaiseksi ole mahdollinen.
