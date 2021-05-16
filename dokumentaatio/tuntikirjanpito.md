@@ -11,3 +11,4 @@
 | 14.5.  | 1    | sovelluslogiikan suunnittelua ja kirjoitusta taistelumekaniikoille |
 | 15.5.  | 2    | ratkaisunhaku .jar -tiedoston generointiin kuvatiedostojen kanssa ja sen toteuttaminen |
 | 15.5.  | 1    | tiedostonimen haun parantelua, pieniä bugien korjauksia |
+| 16.5.  | 8    | tallennusjärjestelmän korjailua, toisen alueen rakentaminen, taistelun toteutus, refaktorointia, repositorion kanssa työskentelyä |
