@@ -70,18 +70,18 @@ public class Battle {
     }
 
     private String winmessage() {
-        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getOppositeOption(option) +", you won! You get " + stake + " moneys for winning.";
+        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getwinOption(option) +", you won! You get " + stake + " moneys for winning.";
     }
     
     private String losemessage() {
-        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getOppositeOption(option) +", you lost! You part your ways with " + stake + " of your moneys.";
+        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getloseOption(option) +", you lost! You part your ways with " + stake + " of your moneys.";
     }
     
     private String newchancemessage() {
-        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getOppositeOption(option) +", you lost! Though, Rival thinks you're a great guy so you get to try again!";
+        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getloseOption(option) +", you lost! Though, Rival thinks you're a great guy so you get to try again!";
     }
 
-    private String getOppositeOption(String option) {
+    private String getwinOption(String option) {
         option = option.toLowerCase();
         
         switch (option) {
@@ -91,6 +91,19 @@ public class Battle {
                 return "rock";
             default:
                 return "paper";
+        }
+    }
+    
+    private String getloseOption(String option) {
+        option = option.toLowerCase();
+        
+        switch (option) {
+            case "rock":
+                return "paper";
+            case "paper":
+                return "scissors";
+            default:
+                return "rock";
         }
     }
 }
