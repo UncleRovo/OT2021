@@ -1,6 +1,7 @@
 package data;
 
 public class Character {
+
     public String name;
     public int luck;
     public int charisma;
@@ -16,9 +17,7 @@ public class Character {
         this.charisma = charisma;
         this.money = money;
     }
-    
-    
-    
+
     public int takeMoney(int i) {
         if (money - i < 0) {
             int amount = money;
@@ -29,7 +28,7 @@ public class Character {
             return i;
         }
     }
-    
+
     public void addMoney(int i) {
         money += i;
         if (money > 5000) {

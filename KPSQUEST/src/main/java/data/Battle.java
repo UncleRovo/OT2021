@@ -82,7 +82,7 @@ public class Battle {
         return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getloseOption(option) +", \nyou lost! Though, Rival thinks you're a great guy \nso you get to try again!";
     }
 
-    private String getwinOption(String option) {
+    public String getwinOption(String option) {
         option = option.toLowerCase();
         
         switch (option) {
@@ -95,7 +95,7 @@ public class Battle {
         }
     }
     
-    private String getloseOption(String option) {
+    public String getloseOption(String option) {
         option = option.toLowerCase();
         
         switch (option) {

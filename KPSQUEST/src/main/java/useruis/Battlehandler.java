@@ -4,7 +4,6 @@ import data.Battle;
 import java.util.List;
 import data.Character;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,6 +14,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 
 public class Battlehandler {
+
     GridPane view = new GridPane();
     Character player;
     Character enemy;
@@ -24,7 +24,7 @@ public class Battlehandler {
     Label stake = new Label("0");
     Battle battle;
     DialogueHandler diahand;
-    
+
     public Battlehandler(List<Node> elements, Pane pane) {
         this.elements = elements;
         stake.setFont(new Font(30));
@@ -33,28 +33,28 @@ public class Battlehandler {
         this.move(poly, 600, 120);
         this.pane = pane;
     }
-    
+
     public void startBattle(Character player, Character rival, DialogueHandler diahand) {
         this.diahand = diahand;
         this.player = player;
         enemy = rival;
-        
+
         GridPane stakes = new GridPane();
         Button incbet = new Button(">");
         Button decbet = new Button("<");
         stake.setText(this.getStake(player));
-        
-        incbet.setOnAction(p ->{
+
+        incbet.setOnAction(p -> {
             if (Integer.valueOf(stake.getText()) < player.money) {
                 stake.setText(Integer.toString(Integer.valueOf(stake.getText()) + 1));
             }
         });
-        decbet.setOnAction(p ->{
+        decbet.setOnAction(p -> {
             if (Integer.valueOf(stake.getText()) > 1) {
                 stake.setText(Integer.toString(Integer.valueOf(stake.getText()) - 1));
             }
         });
-        
+
         Button ready = new Button("I'm ready");
         Label howmuch = new Label("How much will you bet?");
         howmuch.setFont(new Font(30));
@@ -63,19 +63,18 @@ public class Battlehandler {
         stakes.add(stake, 2, 1);
         stakes.add(incbet, 3, 1);
         stakes.add(ready, 2, 2);
-        
-        
-        ready.setOnAction(p ->{
+
+        ready.setOnAction(p -> {
             this.chooseWeapon(stakes, Integer.valueOf(stake.getText()));
         });
         this.move(stakes, 600, 120);
         pane.getChildren().addAll(poly, stakes);
     }
-    
+
     public void endBattle() {
         pane.getChildren().removeAll(poly);
     }
-    
+
     public void move(Node n, double x, double y) {
         n.setTranslateX(x);
         n.setTranslateY(y);
@@ -90,17 +89,15 @@ public class Battlehandler {
     }
 
     private void chooseWeapon(GridPane select, int stake) {
-        
+
         pane.getChildren().remove(select);
         select = new GridPane();
-        
-        
-        
+
         String[] options = new String[]{"Rock", "Paper", "Scissors"};
         Label wep = new Label("Which weapon do you choose?");
         wep.setFont(new Font(30));
         select.add(wep, 0, 0);
-        
+
         for (int i = 1; i < 4; i++) {
             Button b = new Button(options[i - 1]);
             b.setOnAction((ActionEvent p) -> {
@@ -111,18 +108,17 @@ public class Battlehandler {
         move(select, 700, 300);
         pane.getChildren().add(select);
 
-        
     }
 
     private void finalResult(String option, int stake) {
         battle = new Battle(player, enemy, stake);
         battle.option = option;
-        
+
         String result = battle.fight();
-        
+
         Button b = new Button("Next");
-        
-        b.setOnAction(p ->{
+
+        b.setOnAction(p -> {
             pane.getChildren().remove(pane.getChildren().size() - 1);
             pane.getChildren().remove(poly);
             pane.getChildren().remove(b);
@@ -132,11 +128,11 @@ public class Battlehandler {
                 diahand.isBattle = false;
                 this.endBattle();
             }
-            
+
         });
-        
+
         move(b, 700, 400);
-        
+
         pane.getChildren().remove(pane.getChildren().size() - 1);
         Label res = new Label(result);
         move(res, 600, 200);

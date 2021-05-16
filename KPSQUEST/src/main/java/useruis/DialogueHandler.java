@@ -11,8 +11,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 
 public class DialogueHandler {
-    
-    
+
     String[] options;
     boolean isDialogue;
     Polygon dialogueBox;
@@ -24,8 +23,7 @@ public class DialogueHandler {
     boolean isBattle;
     List<Node> elements;
     Polygon battleBox;
-    
-    
+
     public DialogueHandler(Pane p, List<Node> elements) {
         dialogueBox = GraphicsBuilder.getPolygon(1750, 1750, 400, 400, false, 50, 600);
         dialogueBox.setFill(Color.LIGHTGRAY);
@@ -41,14 +39,15 @@ public class DialogueHandler {
         battle = new Battlehandler(elements, p);
         this.elements = elements;
     }
-    
+
     /**
-    * Metodi suorittaa puhekuplan ja tekstin piirtämisen ruudulle.
+     * Metodi suorittaa puhekuplan ja tekstin piirtämisen ruudulle.
+     *
      * @param player
      * @param rival
-    */
+     */
     public void talk(Character player, Character rival) {
-        
+
         if (options[i].contains("_END_")) {
             endConvo();
             return;
@@ -63,11 +62,11 @@ public class DialogueHandler {
             i++;
             return;
         }
-        
+
         text.setText(options[i]);
         i++;
     }
-    
+
     public void endConvo() {
         isDialogue = false;
         text.setVisible(false);
@@ -75,7 +74,7 @@ public class DialogueHandler {
         text.setText("_");
         i = -1;
     }
-    
+
     public void setupTalk(int i, int talkstart) {
         options = d.lines[i];
         this.i = talkstart;

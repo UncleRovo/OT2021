@@ -16,36 +16,36 @@ import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 
 public class OverworldUI {
-    
+
     public static void setOverWorldScene(Stage s, Savefile file) {
         List<Node> elements = new ArrayList<>();
         HashSet<Polygon> hitboxes = new HashSet<>();
-        
+
         Pane pane2 = new Pane();
         pane2.setMinSize(500, 300);
         pane2.setMaxSize(700, 400);
-        
+
         buildOverWorldScene(1, elements, hitboxes);
-        
+
         pane2.getChildren().addAll(elements);
-        
+
         DialogueHandler convo = new DialogueHandler(pane2, elements);
         pane2.getChildren().addAll(convo.dialogueBox, convo.text);
-        
+
         Scene ovscene = new Scene(pane2);
         setKeyDetection(ovscene, elements, hitboxes, convo, pane2, file);
-        
+
         s.setScene(ovscene);
         s.setHeight(1200);
         s.setWidth(2000);
         s.setMaxHeight(1500);
         s.setMaxWidth(2400);
     }
-    
+
     /**
-    * Metodi tarkastelee napinpainalluksia, ja suorittaa tarvittavat toiminnot
-    * oikean napin ollessa painettuna.
-    */
+     * Metodi tarkastelee napinpainalluksia, ja suorittaa tarvittavat toiminnot
+     * oikean napin ollessa painettuna.
+     */
     public static void setKeyDetection(Scene ovscene, List<Node> elements, HashSet<Polygon> hitboxes, DialogueHandler convo, Pane pane, Savefile file) {
         ovscene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             Character rival = new Character("Rival", 6, 5, 100);
@@ -53,29 +53,29 @@ public class OverworldUI {
             int talkstart = 0;
             Node player = elements.get(7);
             KeyCode latest = null;
+
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.A) {
                     System.out.println(file.name + ", " + file.character.luck + ", " + file.character.charisma + ", " + file.character.money);
                 }
-                
-                
+
                 if (!(collision(hitboxes, player)) && diaHandler.isDialogue == false) {
                     if (event.getCode() == KeyCode.LEFT) {
                         player.setTranslateX(player.getTranslateX() - 10);
                         latest = KeyCode.LEFT;
                     }
-                
+
                     if (event.getCode() == KeyCode.RIGHT) {
                         player.setTranslateX(player.getTranslateX() + 10);
                         latest = KeyCode.RIGHT;
                     }
-                
+
                     if (event.getCode() == KeyCode.DOWN) {
                         player.setTranslateY(player.getTranslateY() + 10);
                         latest = KeyCode.DOWN;
                     }
-                
+
                     if (event.getCode() == KeyCode.UP) {
                         player.setTranslateY(player.getTranslateY() - 10);
                         latest = KeyCode.UP;
@@ -84,20 +84,20 @@ public class OverworldUI {
                     if (latest == KeyCode.LEFT) {
                         player.setTranslateX(player.getTranslateX() + 1);
                     }
-                
+
                     if (latest == KeyCode.RIGHT) {
                         player.setTranslateX(player.getTranslateX() - 1);
                     }
-                
+
                     if (latest == KeyCode.DOWN) {
                         player.setTranslateY(player.getTranslateY() - 1);
                     }
-                
+
                     if (latest == KeyCode.UP) {
                         player.setTranslateY(player.getTranslateY() + 1);
                     }
                 }
-                
+
                 if ((event.getCode() == KeyCode.X && player.getBoundsInParent().intersects(elements.get(elements.size() - 2).getBoundsInParent())) || (diaHandler.isChoice && (event.getCode() == KeyCode.C || event.getCode() == KeyCode.V))) {
                     if (diaHandler.isDialogue == false) {
                         diaHandler.setupTalk(Integer.valueOf(elements.get(elements.size() - 2).getId()), talkstart);
@@ -117,12 +117,10 @@ public class OverworldUI {
                         diaHandler.talk(file.character, rival);
                     }
                 }
-                
-                
-                
+
                 if (player.getBoundsInParent().intersects(elements.get(elements.size() - 1).getBoundsInParent()) && elements.get(elements.size() - 1).getId().contains("mapborder")) {
                     int i = 1;
-                    
+
                     if (elements.get(elements.size() - 1).getId().contains("2")) {
                         i = 2;
                     }
@@ -132,7 +130,7 @@ public class OverworldUI {
                     pane.getChildren().addAll(elements);
                     pane.getChildren().addAll(diaHandler.dialogueBox, diaHandler.text);
                 }
-                
+
                 if (event.getCode() == KeyCode.P) {
                     System.out.println(player);
                     System.out.println(player.getBoundsInParent());
@@ -142,13 +140,13 @@ public class OverworldUI {
             }
         });
     }
-    
+
     public static boolean collision(HashSet<Polygon> hitboxes, Node object) {
         return hitboxes.stream().anyMatch((hitbox) -> (object.getBoundsInParent().intersects(hitbox.getBoundsInParent())));
     }
 
     private static void buildGraphics(List<Node> elements, int i) {
-        
+
         if (i == 1) {
             ImageView background = GraphicsBuilder.getGraphicsObject("file:tausta_test.jpg", -900, 0, 1, false);
             ImageView player = GraphicsBuilder.getGraphicsObject("file:protagonist.png", 800, -75, 0.5, true);
@@ -160,8 +158,7 @@ public class OverworldUI {
             ImageView fence2 = GraphicsBuilder.getGraphicsObject("file:fence_short.png", 950, 0, 0.98, true);
             ImageView leftfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_left.png", 0, -42, 0.98, true);
             ImageView rightfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_right.png", 1750, -42, 0.98, true);
-            
-        
+
             leftfence.setScaleY(0.92);
             rightfence.setScaleY(0.92);
             player.setId("player");
@@ -185,13 +182,12 @@ public class OverworldUI {
             ImageView fence2 = GraphicsBuilder.getGraphicsObject("file:fence_short.png", 950, 920, 0.98, true);
             ImageView leftfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_left.png", 0, -42, 0.98, true);
             ImageView rightfence = GraphicsBuilder.getGraphicsObject("file:fence_vertical_right.png", 1750, -42, 0.98, true);
-            
-            
+
             elements.add(background);
             elements.add(longfence);
             elements.add(leftfence);
             elements.add(rightfence);
-            
+
             elements.add(player);
             elements.add(fence1);
             elements.add(fence2);
@@ -210,8 +206,7 @@ public class OverworldUI {
             Polygon rightfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 1760, 0);
             Polygon newAreaTrigger = GraphicsBuilder.getPolygon(140, 140, 60, 60, false, 820, -200);
             newAreaTrigger.setId("mapborder2");
-        
-        
+
             elements.add(houseHitbox);
             elements.add(rivalHitbox);
             elements.add(lowfenceHitbox);
@@ -222,7 +217,7 @@ public class OverworldUI {
             elements.add(rivalTalkbox);
             rivalTalkbox.setId("0");
             elements.add(newAreaTrigger);
-        
+
             hitboxes.add(houseHitbox);
             hitboxes.add(rivalHitbox);
             hitboxes.add(shortfenceHitbox1);
@@ -238,21 +233,21 @@ public class OverworldUI {
             Polygon shortfenceHitbox2 = GraphicsBuilder.getPolygon(765, 765, 60, 60, false, 965, 1000);
             Polygon leftfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 28, 0);
             Polygon rightfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 1760, 0);
-            
+
             elements.add(leftfenceHitbox);
             elements.add(rightfenceHitbox);
             elements.add(shortfenceHitbox1);
             elements.add(shortfenceHitbox2);
             elements.add(lowfenceHitbox);
             elements.add(newAreaTrigger);
-            
+
             hitboxes.add(leftfenceHitbox);
             hitboxes.add(rightfenceHitbox);
             hitboxes.add(shortfenceHitbox1);
             hitboxes.add(shortfenceHitbox2);
             hitboxes.add(lowfenceHitbox);
             hitboxes.add(newAreaTrigger);
-            
+
         }
     }
 
@@ -262,15 +257,15 @@ public class OverworldUI {
         buildGraphics(elements, i);
         buildHitboxes(elements, hitboxes, i);
     }
-    
+
     private static Node findPlayer(List<Node> elements) {
-        for (Node n: elements) {
+        for (Node n : elements) {
             try {
                 if (n.getId().equals("player")) {
-                return n;
+                    return n;
                 }
             } catch (Exception e) {
-                
+
             }
         }
         return null;

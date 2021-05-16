@@ -12,40 +12,41 @@ import data.Savefiles;
 import javafx.scene.layout.GridPane;
 
 public class MainMenu {
+
     public Savefiles savefilemanager = new Savefiles();
     int count = 13;
-        Label howto = new Label("Please set your Luck and Charisma:");
-        Label points = new Label("13");
-        Label lck = new Label("1");
-        Label cha = new Label("1");
-        Button lminus = new Button("<");
-        Button cminus = new Button("<");
-        Button lplus = new Button(">");
-        Button cplus = new Button(">");
-    
+    Label howto = new Label("Please set your Luck and Charisma:");
+    Label points = new Label("13");
+    Label lck = new Label("1");
+    Label cha = new Label("1");
+    Button lminus = new Button("<");
+    Button cminus = new Button("<");
+    Button lplus = new Button(">");
+    Button cplus = new Button(">");
+
     public void setMainMenuScene(Stage s) {
         BorderPane pane = new BorderPane();
         VBox buttons = new VBox();
         pane.setMinSize(200, 200);
         Label welcome = new Label("Please select your game file:\n");
-        
+
         Button clearFiles = new Button("Delete all save data");
-        clearFiles.setOnAction(k ->{
+        clearFiles.setOnAction(k -> {
             savefilemanager.deleteData();
             setMainMenuScene(s);
         });
-        
-        for (Savefile file: savefilemanager.files) {
+
+        for (Savefile file : savefilemanager.files) {
             Button startButton = new Button(file.name);
-            
-            startButton.setOnAction(p ->{
+
+            startButton.setOnAction(p -> {
                 if (file.started) {
                     OverworldUI.setOverWorldScene(s, file);
                 } else {
                     this.createNewSave(s, file);
                 }
             });
-            
+
             buttons.getChildren().add(startButton);
         }
         pane.setCenter(buttons);
@@ -60,53 +61,52 @@ public class MainMenu {
         Label text = new Label("Please insert your name");
         TextField field = new TextField();
         Button b = new Button("I have created my character");
-        
+
         int i = 1;
-        
+
         if (file.name.contains("2")) {
             i = 2;
         } else if (file.name.contains("3")) {
             i = 3;
         }
-        
+
         int number = i;
-        
+
         GridPane initstats = new GridPane();
-        
-        
-        lplus.setOnAction(p ->{
+
+        lplus.setOnAction(p -> {
             if (count != 0 && !(this.lck.getText().equals("10"))) {
                 this.lck.setText(Integer.toString(Integer.valueOf(lck.getText()) + 1));
                 this.count--;
                 this.points.setText(Integer.toString(this.count));
             }
         });
-        
-        cplus.setOnAction(p ->{
+
+        cplus.setOnAction(p -> {
             if (count != 0 && !(this.cha.getText().equals("10"))) {
                 this.cha.setText(Integer.toString(Integer.valueOf(cha.getText()) + 1));
                 this.count--;
                 this.points.setText(Integer.toString(this.count));
             }
         });
-        
-        lminus.setOnAction(p ->{
+
+        lminus.setOnAction(p -> {
             if (!(lck.getText().equals("1"))) {
                 this.lck.setText(Integer.toString(Integer.valueOf(lck.getText()) - 1));
                 this.count++;
                 this.points.setText(Integer.toString(this.count));
             }
         });
-        
-        cminus.setOnAction(p ->{
+
+        cminus.setOnAction(p -> {
             if (!(cha.getText().equals("1"))) {
                 this.cha.setText(Integer.toString(Integer.valueOf(cha.getText()) - 1));
                 this.count++;
                 this.points.setText(Integer.toString(this.count));
             }
         });
-        
-        b.setOnAction(p ->{
+
+        b.setOnAction(p -> {
             if (field.getText().length() > 0) {
                 file.name = field.getText();
                 file.started = true;
@@ -118,7 +118,7 @@ public class MainMenu {
                 savefilemanager.createNew(file, number);
             }
         });
-        
+
         initstats.add(howto, 1, 0);
         initstats.add(new Label("Available points: "), 0, 1);
         initstats.add(points, 1, 1);
@@ -131,7 +131,7 @@ public class MainMenu {
         initstats.add(lminus, 0, 2);
         initstats.add(cminus, 0, 3);
         initstats.add(b, 1, 5);
-        
+
         pane.setMinSize(200, 200);
         pane.setTop(text);
         pane.setCenter(field);
@@ -140,5 +140,5 @@ public class MainMenu {
         Scene n = new Scene(pane);
         s.setScene(n);
     }
-    
+
 }
