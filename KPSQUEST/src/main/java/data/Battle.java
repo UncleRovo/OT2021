@@ -16,8 +16,9 @@ public class Battle {
     
     public String fight() {
         if (winner() == player) {
-            player.addMoney(opponent.takeMoney(stake));
-            return winmessage();
+            int winamount = opponent.takeMoney(stake);
+            player.addMoney(winamount);
+            return winmessage(winamount);
         } else if (tryToConvince() == false) {
             opponent.addMoney(player.takeMoney(stake));
             return this.losemessage();
@@ -69,8 +70,8 @@ public class Battle {
         return chances;
     }
 
-    private String winmessage() {
-        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getwinOption(option) +", you won! You get " + stake + " moneys for winning.";
+    private String winmessage(int win) {
+        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getwinOption(option) +", you won! You get " + win + " moneys for winning.";
     }
     
     private String losemessage() {
