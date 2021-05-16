@@ -5,6 +5,8 @@
 
 [Arkkitehtuuri](https://github.com/UncleRovo/OT2021/blob/main/dokumentaatio/arkkitehtuuri.md)
 
+[Testausdokumentti](https://github.com/UncleRovo/OT2021/blob/main/dokumentaatio/testausdokumentti.md)
+
 [Työaikakirjanpito](https://github.com/UncleRovo/OT2021/blob/main/dokumentaatio/tuntikirjanpito.md)
 
 KPS-Quest on interaktiivinen peli, jossa pelaajan tavoitteena on päihittää Rival -niminen hahmo Kivi Paperi Sakset -pelissä. KPS -eriä otellaan rahasta, ja toisen rahat vienyt voittaa. Pelin häviää pelaamalla kaikki rahansa, jolloin menetät Rivalin kunniotuksen, toisaalta taas voittaa tyhjentämällä Rivalin lompakon ja täten ansaiten hänen kunniotuksensa.
