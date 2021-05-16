@@ -7,7 +7,9 @@
 
 [Työaikakirjanpito](https://github.com/UncleRovo/OT2021/blob/main/dokumentaatio/tuntikirjanpito.md)
 
-Pelissä liikutaan nuolinäppäimillä. Pelimaailman hahmoille puhuminen tapahtuu painamalla x-näppäintä ollessa tarpeeksi lähellä jotakin hahmoa.
+KPS-Quest on interaktiivinen peli, jossa pelaajan tavoitteena on päihittää Rival -niminen hahmo Kivi Paperi Sakset -pelissä. KPS -eriä otellaan rahasta, ja toisen rahat vienyt voittaa. Pelin häviää pelaamalla kaikki rahansa, jolloin menetät Rivalin kunniotuksen, toisaalta taas voittaa tyhjentämällä Rivalin lompakon ja täten ansaiten hänen kunniotuksensa.
+
+Lataa viimeisin release koneellesi, ja noudata käyttöohjeessa listattuja asennusohjeita.
 
 ### Ohjelman testaaminen:
 
