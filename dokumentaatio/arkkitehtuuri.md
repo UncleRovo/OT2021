@@ -26,13 +26,19 @@ Luokka Savefiles hallinnoi pelitallennuksia Savefile -luokasta tehtyjen olioiden
 
 Pelitiedot tallennetaan tiedostoon saves.txt seuraavalla formaatilla:
 
-save_1_0
+save_1_0_0_0_0
 
-save_2_0
+save_2_pelaajanNimi_10_5_50
 
 save_3_0
 
-Eri arvot on eroteltu toisistaan alaviivalla. Keskimmäinen arvo on pelitallennuksen numero, ja oikeanpuolimmaisin arvo on tallennuksen (eli siis pelaajan) nimi. Jos nimi on pelkkä nolla, tunnistaa järjestelmä pelin uudeksi (ei-alkaneeksi).
+Eri arvot on eroteltu toisistaan alaviivalla. Arvot ovat järjestyksessä:
+- tallennus
+- tallennuksen numero
+- pelaajan nimi
+- pelaajan onnipisteet
+- pelaajan karismapisteet
+- pelaajan rahat
 
 ### Grafiikat
 
