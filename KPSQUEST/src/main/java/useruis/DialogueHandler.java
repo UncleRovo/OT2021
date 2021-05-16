@@ -76,9 +76,9 @@ public class DialogueHandler {
         i = -1;
     }
     
-    public void setupTalk(int i) {
+    public void setupTalk(int i, int talkstart) {
         options = d.lines[i];
-        this.i = 0;
+        this.i = talkstart;
         this.isDialogue = true;
         this.isChoice = false;
         text.setVisible(true);

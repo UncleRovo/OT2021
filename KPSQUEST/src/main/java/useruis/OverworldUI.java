@@ -50,6 +50,7 @@ public class OverworldUI {
         ovscene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             Character rival = new Character("Rival", 6, 5, 500);
             DialogueHandler diaHandler = convo;
+            int talkstart = 0;
             Node player = elements.get(7);
             KeyCode latest = null;
             @Override
@@ -99,9 +100,14 @@ public class OverworldUI {
                 
                 if ((event.getCode() == KeyCode.X && player.getBoundsInParent().intersects(elements.get(elements.size() - 2).getBoundsInParent())) || (diaHandler.isChoice && (event.getCode() == KeyCode.C || event.getCode() == KeyCode.V))) {
                     if (diaHandler.isDialogue == false) {
-                        diaHandler.setupTalk(Integer.valueOf(elements.get(elements.size() - 2).getId()));
+                        diaHandler.setupTalk(Integer.valueOf(elements.get(elements.size() - 2).getId()), talkstart);
                     } else if (diaHandler.isDialogue && diaHandler.isChoice == false) {
                         diaHandler.talk(file.character, rival);
+                        if (rival.money <= 0) {
+                            talkstart = 7;
+                        } else if (file.character.money == 0) {
+                            talkstart = 9;
+                        }
                     } else if (diaHandler.isDialogue && event.getCode() == KeyCode.C && diaHandler.isChoice) {
                         diaHandler.selectYesOrNo(0);
                         diaHandler.talk(file.character, rival);

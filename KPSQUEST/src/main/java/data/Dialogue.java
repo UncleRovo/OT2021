@@ -4,7 +4,7 @@ import useruis.DialogueHandler;
 
 public class Dialogue {
     public DialogueHandler d;
-    public String[][] lines = new String[10][10];
+    public String[][] lines = new String[12][12];
     
     public Dialogue() {
         //0 = Rival
@@ -15,6 +15,10 @@ public class Dialogue {
         lines[0][4] = "_BATTLE_"; 
         lines[0][5] = "You chose 'no'"; 
         lines[0][6] = "_END_"; 
+        lines[0][7] = "You beat me fair and square, there's\nno doubt about that."; 
+        lines[0][8] = "_END_";
+        lines[0][9] = "Go away! I won't play with losers\nwho have no money!"; 
+        lines[0][10] = "_END_"; 
     }
     
     public void startDialogue() {
