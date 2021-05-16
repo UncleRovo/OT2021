@@ -23,6 +23,7 @@ public class Battlehandler {
     Polygon poly;
     Label stake = new Label("0");
     Battle battle;
+    DialogueHandler diahand;
     
     public Battlehandler(List<Node> elements, Pane pane) {
         this.elements = elements;
@@ -33,7 +34,8 @@ public class Battlehandler {
         this.pane = pane;
     }
     
-    public void startBattle(Character player, Character rival) {
+    public void startBattle(Character player, Character rival, DialogueHandler diahand) {
+        this.diahand = diahand;
         this.player = player;
         enemy = rival;
         
@@ -125,8 +127,9 @@ public class Battlehandler {
             pane.getChildren().remove(poly);
             pane.getChildren().remove(b);
             if (result.contains("great")) {
-                startBattle(player, enemy);
+                startBattle(player, enemy, diahand);
             } else {
+                diahand.isBattle = false;
                 this.endBattle();
             }
             

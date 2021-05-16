@@ -59,7 +59,7 @@ public class DialogueHandler {
             isChoice = false;
             isBattle = true;
             text.setText("GAME ON!");
-            battle.startBattle(player, rival);
+            battle.startBattle(player, rival, this);
             i++;
             return;
         }

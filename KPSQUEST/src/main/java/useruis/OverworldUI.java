@@ -101,7 +101,7 @@ public class OverworldUI {
                 if ((event.getCode() == KeyCode.X && player.getBoundsInParent().intersects(elements.get(elements.size() - 2).getBoundsInParent())) || (diaHandler.isChoice && (event.getCode() == KeyCode.C || event.getCode() == KeyCode.V))) {
                     if (diaHandler.isDialogue == false) {
                         diaHandler.setupTalk(Integer.valueOf(elements.get(elements.size() - 2).getId()), talkstart);
-                    } else if (diaHandler.isDialogue && diaHandler.isChoice == false) {
+                    } else if (diaHandler.isDialogue && diaHandler.isChoice == false && diaHandler.isBattle == false) {
                         diaHandler.talk(file.character, rival);
                         if (rival.money <= 0) {
                             talkstart = 7;
