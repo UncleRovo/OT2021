@@ -11,14 +11,34 @@ KPS-Quest on interaktiivinen peli, jossa pelaajan tavoitteena on päihittää Ri
 
 Lataa viimeisin release koneellesi, ja noudata käyttöohjeessa listattuja asennusohjeita.
 
-### Ohjelman testaaminen:
+### Tärkeimmät komennot:
 
-#### Tapa 1:
+#### Ohjelman käynnistys:
+```
+mvn compile exec:java -Dexec.mainClass=mainprogram.Main
+```
 
-Lataa kansio KPSQUEST koneellesi, navigoi terminaalissa kyseisen kansion sisälle ja suorita komento: mvn compile exec:java -Dexec.mainClass=mainprogram.Main
+#### JAR-tiedoston luonti:
+```
+mvn package
+```
 
-##### Tapa 2:
+#### Testaukseen liittyvät komennot:
+Testien ajo
+```
+mvn test
+```
+Testikattavuuden raportointi:
+```
+mvn jacoco:report
+```
 
-Lataa tiedosto KPSQUEST-1.0-SNAPSHOT.jar ja suorita komento: java -jar KPSQUEST-1.0-SNAPSHOT.jar 
+#### Checkstyle:
+```
+mvn jxr:jxr checkstyle:checkstyle
+```
 
-Ainakin laitoksen koneilla tiedoston voi avata ilman terminaalia klikkaamalla tiedostoa Hiiren oikealla painikkeella ja valitsemalla valikosta "Open in JDK 11 Runtime Environment"
+#### Javadocin luonti:
+```
+mvn javadoc:javadoc
+```
