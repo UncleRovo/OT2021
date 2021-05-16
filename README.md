@@ -1,4 +1,5 @@
 # KPS-Quest
+[Käyttöohje](https://github.com/UncleRovo/OT2021/blob/main/dokumentaatio/kayttoohje.md)
 
 [Vaatimusmäärittely](https://github.com/UncleRovo/OT2021/blob/main/dokumentaatio/vaatimusmaarittely.md)
 
