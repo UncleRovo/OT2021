@@ -34,6 +34,6 @@ public class Utils {
     
     public static String getSavePath(String path) {
         
-        return path;
+        return "src/main/resources/Gamedata/SaveFiles/"+path;
     }
 }
