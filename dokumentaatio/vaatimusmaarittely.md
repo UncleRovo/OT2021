@@ -6,12 +6,13 @@ KPS-Quest on interaktiivinen, "top-down" -kuvakulmasta kuvattu roolipeli, jossa 
 - Tallennustoiminnallisuus
 - Useampi pelitallennus
 - Pelimaailman hahmoille puhuminen
-## Suunnitellut toiminnallisuudet
-#### Ensimmäisessä versiossa tulee olemaan:
+- Kahden eri näkymän välillä siirtyminen
 - Hahmonluonti
 - Taistelunäkymä, jossa kamppaillaan yhtä hahmoa vastaan kerrallaan
 - Siirtymä Overworld- ja taistelunäkymien välillä
-- Rahojen loppuminen aiheuttaa pelin häviämisen
+- Rahojen loppuminen aiheuttaa pelin häviämisen (dialogin muodossa)
+- peli voitetaan riistämällä rahat pääpahikselta
+## Suunnitellut toiminnallisuudet
 #### Peliä voi jatkokehittää seuraavin ominaisuuksin:
 - Kokemuspisteet ja hahmon kehitys
 - Pelimaailmasta löytyvät kaupat
