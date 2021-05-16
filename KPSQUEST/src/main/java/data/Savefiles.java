@@ -26,6 +26,9 @@ public class Savefiles {
                     files[Integer.valueOf(savedata[1]) - 1] = new Savefile("New Save " + savedata[1], false);
                 } else {
                     files[Integer.valueOf(savedata[1]) - 1] = new Savefile(savedata[2], true);
+                    files[Integer.valueOf(savedata[1]) - 1].character.luck = Integer.valueOf(savedata[3]);
+                    files[Integer.valueOf(savedata[1]) - 1].character.charisma = Integer.valueOf(savedata[4]);
+                    files[Integer.valueOf(savedata[1]) - 1].character.money = Integer.valueOf(savedata[5]);
                 }
             }
         } catch (Exception e) {
@@ -53,7 +56,7 @@ public class Savefiles {
             InputStream is = this.getClass().getClassLoader().getResourceAsStream("Gamedata/SaveFiles/saves.txt");
             PrintWriter writer = new PrintWriter(data.Utils.getSavePath("saves.txt"));
             for (int i = 0; i < 3; i++) {
-                writer.print("save_" + Integer.toString(i + 1) + "_0");
+                writer.print("save_" + Integer.toString(i + 1) + "_0_0_0_0");
                 if (i < 2) {
                     writer.print("\n");
                 }
@@ -88,10 +91,11 @@ public class Savefiles {
         try { 
             List<String> info = Files.readAllLines(Paths.get(data.Utils.getSavePath("saves.txt")));
             PrintWriter writer = new PrintWriter(data.Utils.getSavePath("saves.txt"));
+            
                     
             for (int c = 0; c < 3; c++) {
                 if (info.get(c).contains("save_" + k)) {
-                    writer.print("save_" + k + "_" + file.name);
+                    writer.print("save_" + k + "_" + file.name + "_" + file.character.luck + "_" + file.character.charisma + "_500");
                 } else {
                     writer.print(info.get(c));
                 }

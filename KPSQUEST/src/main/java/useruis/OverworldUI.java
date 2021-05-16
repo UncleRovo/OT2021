@@ -1,5 +1,6 @@
 package useruis;
 
+import data.Savefile;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +16,7 @@ import javafx.stage.Stage;
 
 public class OverworldUI {
     
-    public static void setOverWorldScene(Stage s, String name) {
+    public static void setOverWorldScene(Stage s, Savefile file) {
         List<Node> elements = new ArrayList<>();
         HashSet<Polygon> hitboxes = new HashSet<>();
         
@@ -31,7 +32,7 @@ public class OverworldUI {
         pane2.getChildren().addAll(convo.dialogueBox, convo.text);
         
         Scene ovscene = new Scene(pane2);
-        setKeyDetection(ovscene, elements, hitboxes, convo, pane2);
+        setKeyDetection(ovscene, elements, hitboxes, convo, pane2, file);
         
         s.setScene(ovscene);
         s.setHeight(1200);
@@ -44,13 +45,18 @@ public class OverworldUI {
     * Metodi tarkastelee napinpainalluksia, ja suorittaa tarvittavat toiminnot
     * oikean napin ollessa painettuna.
     */
-    public static void setKeyDetection(Scene ovscene, List<Node> elements, HashSet<Polygon> hitboxes, DialogueHandler convo, Pane pane) {
+    public static void setKeyDetection(Scene ovscene, List<Node> elements, HashSet<Polygon> hitboxes, DialogueHandler convo, Pane pane, Savefile file) {
         ovscene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             DialogueHandler diaHandler = convo;
             Node player = elements.get(7);
             KeyCode latest = null;
             @Override
             public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.A) {
+                    System.out.println(file.name + ", " + file.character.luck + ", " + file.character.charisma + ", " + file.character.money);
+                }
+                
+                
                 if (!(collision(hitboxes, player)) && diaHandler.isDialogue == false) {
                     if (event.getCode() == KeyCode.LEFT) {
                         player.setTranslateX(player.getTranslateX() - 10);

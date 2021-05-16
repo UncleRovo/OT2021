@@ -1,14 +1,13 @@
 package data;
 
 public class Character {
-    int luck;
-    int charisma;
-    int money;
+    public String name;
+    public int luck;
+    public int charisma;
+    public int money;
 
-    public Character(int luck, int charisma, int money) {
-        this.luck = luck;
-        this.charisma = charisma;
-        this.money = money;
+    public Character(String name) {
+        this.name = name;
     }
     
     public int takeMoney(int i) {

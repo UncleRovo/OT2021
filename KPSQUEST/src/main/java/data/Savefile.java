@@ -3,6 +3,7 @@ package data;
 public class Savefile {
     public String name;
     public boolean started;
+    public Character character = new Character("pl");
     
     public Savefile(String name, boolean started) {
         this.name = name;

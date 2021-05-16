@@ -40,7 +40,7 @@ public class MainMenu {
             
             startButton.setOnAction(p ->{
                 if (file.started) {
-                    OverworldUI.setOverWorldScene(s, file.name);
+                    OverworldUI.setOverWorldScene(s, file);
                 } else {
                     this.createNewSave(s, file);
                 }
@@ -110,6 +110,10 @@ public class MainMenu {
             if (field.getText().length() > 0) {
                 file.name = field.getText();
                 file.started = true;
+                file.character.name = file.name;
+                file.character.luck = Integer.valueOf(lck.getText());
+                file.character.charisma = Integer.valueOf(cha.getText());
+                file.character.money = 500;
                 this.setMainMenuScene(s);
                 savefilemanager.createNew(file, number);
             }
