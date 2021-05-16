@@ -95,7 +95,7 @@ public class Savefiles {
                     
             for (int c = 0; c < 3; c++) {
                 if (info.get(c).contains("save_" + k)) {
-                    writer.print("save_" + k + "_" + file.name + "_" + file.character.luck + "_" + file.character.charisma + "_500");
+                    writer.print("save_" + k + "_" + file.name + "_" + file.character.luck + "_" + file.character.charisma + "_50");
                 } else {
                     writer.print(info.get(c));
                 }

@@ -113,7 +113,7 @@ public class MainMenu {
                 file.character.name = file.name;
                 file.character.luck = Integer.valueOf(lck.getText());
                 file.character.charisma = Integer.valueOf(cha.getText());
-                file.character.money = 500;
+                file.character.money = 50;
                 this.setMainMenuScene(s);
                 savefilemanager.createNew(file, number);
             }

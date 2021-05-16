@@ -48,7 +48,7 @@ public class OverworldUI {
     */
     public static void setKeyDetection(Scene ovscene, List<Node> elements, HashSet<Polygon> hitboxes, DialogueHandler convo, Pane pane, Savefile file) {
         ovscene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            Character rival = new Character("Rival", 6, 5, 500);
+            Character rival = new Character("Rival", 6, 5, 100);
             DialogueHandler diaHandler = convo;
             int talkstart = 0;
             Node player = elements.get(7);
