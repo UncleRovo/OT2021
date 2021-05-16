@@ -9,9 +9,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import data.Savefiles;
+import javafx.scene.layout.GridPane;
 
 public class MainMenu {
     public Savefiles savefilemanager = new Savefiles();
+    int count = 13;
+        Label howto = new Label("Please set your Luck and Charisma:");
+        Label points = new Label("13");
+        Label lck = new Label("1");
+        Label cha = new Label("1");
+        Button lminus = new Button("<");
+        Button cminus = new Button("<");
+        Button lplus = new Button(">");
+        Button cplus = new Button(">");
     
     public void setMainMenuScene(Stage s) {
         BorderPane pane = new BorderPane();
@@ -49,7 +59,7 @@ public class MainMenu {
         BorderPane pane = new BorderPane();
         Label text = new Label("Please insert your name");
         TextField field = new TextField();
-        Button b = new Button("This is my name");
+        Button b = new Button("I have created my character");
         
         int i = 1;
         
@@ -61,6 +71,41 @@ public class MainMenu {
         
         int number = i;
         
+        GridPane initstats = new GridPane();
+        
+        
+        lplus.setOnAction(p ->{
+            if (count != 0 && !(this.lck.getText().equals("10"))) {
+                this.lck.setText(Integer.toString(Integer.valueOf(lck.getText()) + 1));
+                this.count--;
+                this.points.setText(Integer.toString(this.count));
+            }
+        });
+        
+        cplus.setOnAction(p ->{
+            if (count != 0 && !(this.cha.getText().equals("10"))) {
+                this.cha.setText(Integer.toString(Integer.valueOf(cha.getText()) + 1));
+                this.count--;
+                this.points.setText(Integer.toString(this.count));
+            }
+        });
+        
+        lminus.setOnAction(p ->{
+            if (!(lck.getText().equals("1"))) {
+                this.lck.setText(Integer.toString(Integer.valueOf(lck.getText()) - 1));
+                this.count++;
+                this.points.setText(Integer.toString(this.count));
+            }
+        });
+        
+        cminus.setOnAction(p ->{
+            if (!(cha.getText().equals("1"))) {
+                this.cha.setText(Integer.toString(Integer.valueOf(cha.getText()) - 1));
+                this.count++;
+                this.points.setText(Integer.toString(this.count));
+            }
+        });
+        
         b.setOnAction(p ->{
             if (field.getText().length() > 0) {
                 file.name = field.getText();
@@ -70,10 +115,24 @@ public class MainMenu {
             }
         });
         
+        initstats.add(howto, 1, 0);
+        initstats.add(new Label("Available points: "), 0, 1);
+        initstats.add(points, 1, 1);
+        initstats.add(lck, 2, 2);
+        initstats.add(cha, 2, 3);
+        initstats.add(lplus, 3, 2);
+        initstats.add(new Label("Luck:     "), 1, 2);
+        initstats.add(cplus, 3, 3);
+        initstats.add(new Label("Charisma: "), 1, 3);
+        initstats.add(lminus, 0, 2);
+        initstats.add(cminus, 0, 3);
+        initstats.add(b, 1, 5);
+        
         pane.setMinSize(200, 200);
         pane.setTop(text);
         pane.setCenter(field);
-        pane.setBottom(b);
+        //pane.setBottom(b);
+        pane.setBottom(initstats);
         Scene n = new Scene(pane);
         s.setScene(n);
     }

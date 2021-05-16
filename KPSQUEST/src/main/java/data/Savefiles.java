@@ -50,6 +50,7 @@ public class Savefiles {
     
     public void deleteData() {
         try {
+            InputStream is = this.getClass().getClassLoader().getResourceAsStream("Gamedata/SaveFiles/saves.txt");
             PrintWriter writer = new PrintWriter(data.Utils.getSavePath("saves.txt"));
             for (int i = 0; i < 3; i++) {
                 writer.print("save_" + Integer.toString(i + 1) + "_0");
@@ -100,7 +101,7 @@ public class Savefiles {
             }
             writer.close();
         } catch (Exception e) {
-                    System.out.println("Löytyi virhe: " + e);
+            System.out.println("Löytyi virhe: " + e);
         }
     }
 }
