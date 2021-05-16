@@ -12,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
+import javafx.scene.text.Font;
 
 public class Battlehandler {
     GridPane view = new GridPane();
@@ -25,9 +26,10 @@ public class Battlehandler {
     
     public Battlehandler(List<Node> elements, Pane pane) {
         this.elements = elements;
-       
+        stake.setFont(new Font(30));
         poly = GraphicsBuilder.getPolygon(700, 700, 390, 390, true, 0, 0);
         poly.setFill(Color.RED);
+        this.move(poly, 600, 120);
         this.pane = pane;
     }
     
@@ -52,8 +54,9 @@ public class Battlehandler {
         });
         
         Button ready = new Button("I'm ready");
-        
-        stakes.add(new Label("Paljonko lyöt vetoa?"), 0, 0);
+        Label howmuch = new Label("How much will you bet?");
+        howmuch.setFont(new Font(30));
+        stakes.add(howmuch, 0, 0);
         stakes.add(decbet, 1, 1);
         stakes.add(stake, 2, 1);
         stakes.add(incbet, 3, 1);
@@ -63,10 +66,7 @@ public class Battlehandler {
         ready.setOnAction(p ->{
             this.chooseWeapon(stakes, Integer.valueOf(stake.getText()));
         });
-        
-        
-        Label p = new Label(this.player.name);
-        Label e = new Label(enemy.name);
+        this.move(stakes, 600, 120);
         pane.getChildren().addAll(poly, stakes);
     }
     
@@ -95,16 +95,18 @@ public class Battlehandler {
         
         
         String[] options = new String[]{"Rock", "Paper", "Scissors"};
+        Label wep = new Label("Which weapon do you choose?");
+        wep.setFont(new Font(30));
+        select.add(wep, 0, 0);
         
-        select.add(new Label("Which weapon do you choose?"), 1, 0);
-        
-        for (int i = 0; i < 3; i++) {
-            Button b = new Button(options[i]);
+        for (int i = 1; i < 4; i++) {
+            Button b = new Button(options[i - 1]);
             b.setOnAction((ActionEvent p) -> {
                 Battlehandler.this.finalResult(b.getText(), stake);
             });
             select.add(b, i, 1);
         }
+        move(select, 700, 300);
         pane.getChildren().add(select);
 
         
@@ -130,8 +132,12 @@ public class Battlehandler {
             
         });
         
-        pane.getChildren().remove(pane.getChildren().size() - 1);
+        move(b, 700, 300);
         
-        pane.getChildren().addAll(b, new Label(result));
+        pane.getChildren().remove(pane.getChildren().size() - 1);
+        Label res = new Label(result);
+        move(res, 600, 200);
+        res.setFont(new Font(30));
+        pane.getChildren().addAll(b, res);
     }
 }
