@@ -132,7 +132,7 @@ public class Battlehandler {
             
         });
         
-        move(b, 700, 300);
+        move(b, 700, 400);
         
         pane.getChildren().remove(pane.getChildren().size() - 1);
         Label res = new Label(result);

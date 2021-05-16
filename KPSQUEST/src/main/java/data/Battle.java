@@ -71,15 +71,15 @@ public class Battle {
     }
 
     private String winmessage(int win) {
-        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getwinOption(option) +", you won! You get " + win + " moneys for winning.";
+        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getwinOption(option) +",\n you won! You get " + win + " moneys for winning.";
     }
     
     private String losemessage() {
-        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getloseOption(option) +", you lost! You part your ways with " + stake + " of your moneys.";
+        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getloseOption(option) +",\n you lost! You part your ways with " + stake + " of your moneys.";
     }
     
     private String newchancemessage() {
-        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getloseOption(option) +", you lost! Though, Rival thinks you're a great guy so you get to try again!";
+        return "You chose " + option.toLowerCase() + " and your opponent chose " + this.getloseOption(option) +", \nyou lost! Though, Rival thinks you're a great guy \nso you get to try again!";
     }
 
     private String getwinOption(String option) {
