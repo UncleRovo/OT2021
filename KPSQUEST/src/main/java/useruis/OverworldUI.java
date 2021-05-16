@@ -233,8 +233,26 @@ public class OverworldUI {
         } else if (i == 2) {
             Polygon newAreaTrigger = GraphicsBuilder.getPolygon(140, 140, 60, 60, true, 820, 1200);
             newAreaTrigger.setId("mapborder1");
+            Polygon lowfenceHitbox = GraphicsBuilder.getPolygon(1750, 1750, 60, 60, false, 50, -50);
+            Polygon shortfenceHitbox1 = GraphicsBuilder.getPolygon(765, 765, 60, 60, false, 50, 1000);
+            Polygon shortfenceHitbox2 = GraphicsBuilder.getPolygon(765, 765, 60, 60, false, 965, 1000);
+            Polygon leftfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 28, 0);
+            Polygon rightfenceHitbox = GraphicsBuilder.getPolygon(60, 60, 1000, 1000, false, 1760, 0);
+            
+            elements.add(leftfenceHitbox);
+            elements.add(rightfenceHitbox);
+            elements.add(shortfenceHitbox1);
+            elements.add(shortfenceHitbox2);
+            elements.add(lowfenceHitbox);
             elements.add(newAreaTrigger);
+            
+            hitboxes.add(leftfenceHitbox);
+            hitboxes.add(rightfenceHitbox);
+            hitboxes.add(shortfenceHitbox1);
+            hitboxes.add(shortfenceHitbox2);
+            hitboxes.add(lowfenceHitbox);
             hitboxes.add(newAreaTrigger);
+            
         }
     }
 
