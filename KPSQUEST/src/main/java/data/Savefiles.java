@@ -17,7 +17,7 @@ public class Savefiles {
     
     public void initFiles() {
         try {
-            File save = new File(data.Utils.getSavePath("saves"));
+            File save = new File(data.Utils.getSavePath("saves.txt"));
             Scanner t = new Scanner(save);
             while (t.hasNextLine()) {
                 String s = t.nextLine();
@@ -29,8 +29,9 @@ public class Savefiles {
                 }
             }
         } catch (Exception e) {
+            System.out.println("Mentiin virheeseen: " + e);
             try { 
-                InputStream is = this.getClass().getClassLoader().getResourceAsStream("saves");
+                InputStream is = this.getClass().getClassLoader().getResourceAsStream("Gamedata/SaveFiles/saves.txt");
                 Scanner t = new Scanner(is);
                 while (t.hasNextLine()) {
                     String s = t.nextLine();
@@ -49,24 +50,43 @@ public class Savefiles {
     
     public void deleteData() {
         try {
-            PrintWriter writer = new PrintWriter(new File("saves"));
-            for (int i = 1; i < 4; i++) {
-                writer.print("save_" + i + "_0");
-                if (i < 3) {
+            PrintWriter writer = new PrintWriter(data.Utils.getSavePath("saves.txt"));
+            for (int i = 0; i < 3; i++) {
+                writer.print("save_" + Integer.toString(i + 1) + "_0");
+                if (i < 2) {
                     writer.print("\n");
                 }
             }
             writer.close();
-            files = new Savefile[] {new Savefile("New File 1", false), new Savefile("New File 2", false), new Savefile("New File 3", false)};
+            files = new Savefile[3];
+            files[0] = new Savefile("New File 1", false);
+            files[1] = new Savefile("New File 2", false);
+            files[2] = new Savefile("New File 3", false);
         } catch (Exception e) {
-                
+                try {
+            PrintWriter writer = new PrintWriter("Gamedata/SaveFiles/saves.txt");
+            for (int i = 0; i < 3; i++) {
+                writer.print("save_" + Integer.toString(i + 1) + "_0");
+                if (i < 2) {
+                    writer.print("\n");
+                }
+            }
+            writer.close();
+            files = new Savefile[3];
+            files[0] = new Savefile("New File 1", false);
+            files[1] = new Savefile("New File 2", false);
+            files[2] = new Savefile("New File 3", false);
+        } catch (Exception ee) {
+                System.out.println("VIRHE: " + e);
+                System.out.println(e.getLocalizedMessage());
+        }
         }
     }
     
     public void createNew(Savefile file, int k) {
         try { 
-            List<String> info = Files.readAllLines(Paths.get("saves"));
-            PrintWriter writer = new PrintWriter(new File("saves"));
+            List<String> info = Files.readAllLines(Paths.get(data.Utils.getSavePath("saves.txt")));
+            PrintWriter writer = new PrintWriter(data.Utils.getSavePath("saves.txt"));
                     
             for (int c = 0; c < 3; c++) {
                 if (info.get(c).contains("save_" + k)) {
@@ -80,7 +100,7 @@ public class Savefiles {
             }
             writer.close();
         } catch (Exception e) {
-                    
+                    System.out.println("Löytyi virhe: " + e);
         }
     }
 }

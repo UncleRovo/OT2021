@@ -33,7 +33,33 @@ public class Utils {
     }
     
     public static String getSavePath(String path) {
+        String name = path;
+        path = "src/main/resources/Gamedata/SaveFiles/"+ name;
         
-        return "src/main/resources/Gamedata/SaveFiles/"+path;
+        ClassLoader cl = Thread.currentThread().getContextClassLoader();
+        if (cl == null) {
+            cl = Class.class.getClassLoader();
+        }
+        
+        cl.getResourceAsStream("Gamedata/SaveFiles/"+name);
+        System.out.println("Haetaan resurssia: "+cl.getResource("Gamedata/SaveFiles/"+name));
+        
+        if (cl.getResource("Gamedata/SaveFiles/"+name) != null) {
+            path = cl.getResource("Gamedata/SaveFiles/"+name).toString();
+        }
+        
+        if (Utils.class.getResource("Utils.class").toString().contains("jar")) {
+            System.out.println("Löydettiin oikea Jar-polku");
+            //String[] things = path.split(":");
+            //path = things[2];
+        } else {
+            path = "src/main/resources/Gamedata/SaveFiles/"+ name;
+        }
+        
+        System.out.println("POLKU ON: " + path);
+        
+        
+        
+        return path;
     }
 }
